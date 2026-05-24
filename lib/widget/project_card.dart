@@ -25,7 +25,7 @@ class ProjectCard extends StatelessWidget {
               children: [
                 Image.asset(project.image, 
                 height: 140,
-                //width: 260,
+                width: 290,
                 fit: BoxFit.cover),
 
                 //======Title====

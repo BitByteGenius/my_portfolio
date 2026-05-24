@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:my_portfollio/constant/colors.dart';
 import 'package:my_portfollio/constant/size.dart';
+import 'package:my_portfollio/widget/contact_section.dart';
 import 'package:my_portfollio/widget/drawer_mobile.dart';
 import 'package:my_portfollio/widget/header_dasktop.dart';
 import 'package:my_portfollio/widget/header_mobil.dart';
@@ -78,6 +79,10 @@ class HomePage extends StatelessWidget {
               
               //========Projects=========
               ProjectSection(),
+              const SizedBox(height: 30),
+
+              //========Contact us===============
+             const ContactSection(),
           ],
           
       ),
@@ -87,5 +92,7 @@ class HomePage extends StatelessWidget {
       
     );
   }
+
+ 
 }
 
