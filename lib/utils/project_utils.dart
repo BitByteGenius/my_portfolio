@@ -56,7 +56,7 @@ List<ProjectUtils> workProjectUtils = [
   ProjectUtils(
     image: 'assets/projects/02.png',
     title: 'Hastkala - Ecommerce Platform',
-    subtitle: '“Hastkala – E-commerce”, a Flutter-based platform for handmade products. It features a clean UI with product listings, categories, and a smooth checkout experience. Designed with warm earthy tones, it reflects the essence of promoting artisans and authentic handcrafted goods through a modern digital shopping experience.',
+    subtitle: 'Platform for handmade products. It features a clean UI with product listings, categories, and a smooth checkout experience. Designed with warm earthy tones, it reflects the essence of promoting artisans and authentic handcrafted goods through a modern digital shopping experience.',
     androidLink: '',
     iosLink: '',
     webLink: '',
