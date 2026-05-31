@@ -12,30 +12,39 @@ class SkillDesktop extends StatelessWidget {
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
         ConstrainedBox(
-          constraints: const BoxConstraints(maxWidth: 450),
-          child: Wrap(
-            spacing: 0.5,
-            runSpacing: 0.5,
-            children: [
-              for (int i = 0; i < platformItems.length; i++)
-                Container(
-                  width: 200,
-                  decoration: BoxDecoration(
-                    color: CustomColor.bgLight2,
-                    borderRadius: BorderRadius.circular(5),
-                  ),
-                  child: ListTile(
-                    contentPadding: const EdgeInsets.symmetric(
-                      horizontal: 20,
-                      vertical: 10,
-                    ),
-                    leading: Image.asset(platformItems[i]["img"], width: 26),
-                    title: Text(platformItems[i]["title"]),
-                  ),
-                ),
-            ],
+  constraints: const BoxConstraints(maxWidth: 450),
+  child: Wrap(
+    spacing: 10,
+    runSpacing: 10,
+    children: platformItems.map((item) {
+      return SizedBox(
+        width: 220,
+        child: Container(
+          decoration: BoxDecoration(
+            color: CustomColor.bgLight2,
+            borderRadius: BorderRadius.circular(5),
+          ),
+          child: ListTile(
+            contentPadding: const EdgeInsets.symmetric(
+              horizontal: 20,
+              vertical: 10,
+            ),
+            leading: Image.asset(
+              item["img"],
+              width: 26,
+            ),
+            title: Text(
+              item["title"],
+              style: const TextStyle(
+                color: Colors.white,
+              ),
+            ),
           ),
         ),
+      );
+    }).toList(),
+  ),
+),
         const SizedBox(width: 50),
 
         Flexible(

@@ -1,12 +1,16 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:my_portfollio/constant/colors.dart';
 import 'package:my_portfollio/constant/size.dart';
 import 'package:my_portfollio/constant/sns_link.dart';
+import 'package:my_portfollio/controller/contact_section_controller.dart';
 import 'package:my_portfollio/widget/Custom_text_field.dart';
 import 'dart:js' as js;
 
 class ContactSection extends StatelessWidget {
-  const ContactSection({super.key});
+  ContactSection({super.key});
+
+  final controller = Get.put(ContactSectionController());
 
   @override
   Widget build(BuildContext context) {
@@ -40,7 +44,11 @@ class ContactSection extends StatelessWidget {
           const SizedBox(height: 20),
           ConstrainedBox(
             constraints: BoxConstraints(maxWidth: 700),
-            child: CustomTextField(hintText: "Your message", maxLines: 5),
+            child: CustomTextField(
+              hintText: "Your message",
+              controller: controller.messageController,
+              maxLines: 5,
+            ),
           ),
           const SizedBox(height: 20),
           //=====Send Boutom=====
@@ -48,7 +56,12 @@ class ContactSection extends StatelessWidget {
             constraints: BoxConstraints(maxWidth: 700),
             child: SizedBox(
               width: double.maxFinite,
-              child: ElevatedButton(onPressed: () {}, child: Text("Submit")),
+              child: ElevatedButton(
+                onPressed: () {
+                  controller.submitForm();
+                },
+                child: Text("Submit"),
+              ),
             ),
           ),
           const SizedBox(height: 30),
@@ -109,9 +122,19 @@ class ContactSection extends StatelessWidget {
   Row buildNameEmailFieldDesktop() {
     return Row(
       children: [
-        Flexible(child: CustomTextField(hintText: "Your name")),
+        Flexible(
+          child: CustomTextField(
+            hintText: "Your name",
+            controller: controller.nameController,
+          ),
+        ),
         const SizedBox(width: 20),
-        Flexible(child: CustomTextField(hintText: "Your email")),
+        Flexible(
+          child: CustomTextField(
+            hintText: "Your email",
+            controller: controller.emailController,
+          ),
+        ),
       ],
     );
   }
@@ -119,9 +142,19 @@ class ContactSection extends StatelessWidget {
   Column buildNameEmailFieldMobile() {
     return Column(
       children: [
-        Flexible(child: CustomTextField(hintText: "Your name")),
+        Flexible(
+          child: CustomTextField(
+            hintText: "Your name",
+            controller: controller.nameController,
+          ),
+        ),
         const SizedBox(height: 20),
-        Flexible(child: CustomTextField(hintText: "Your email")),
+        Flexible(
+          child: CustomTextField(
+            hintText: "Your email",
+            controller: controller.emailController,
+          ),
+        ),
       ],
     );
   }

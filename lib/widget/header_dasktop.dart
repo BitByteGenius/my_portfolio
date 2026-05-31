@@ -8,7 +8,7 @@ class HeaderDasktop extends StatelessWidget {
 
   final Function(int) onNavMenuTap;
 
-  @override
+ /* @override
   Widget build(BuildContext context) {
     return Container(
       height: 60,
@@ -46,5 +46,61 @@ class HeaderDasktop extends StatelessWidget {
         ],
       ),
     );
-  }
+  }*/
+  @override
+Widget build(BuildContext context) {
+  return Container(
+    height: 70,
+    width: double.infinity,
+    margin: const EdgeInsets.symmetric(vertical: 10, horizontal: 20),
+    padding: const EdgeInsets.symmetric(horizontal: 20),
+    decoration: BoxDecoration(
+      gradient: LinearGradient(
+        colors: [
+          Colors.transparent,
+          CustomColor.bgLight1.withOpacity(0.9),
+        ],
+      ),
+      borderRadius: BorderRadius.circular(50),
+      boxShadow: [
+        BoxShadow(
+          color: Colors.black.withOpacity(0.2),
+          blurRadius: 8,
+        ),
+      ],
+    ),
+    child: Row(
+      children: [
+        /// 🔹 Logo
+        SiteLogo(onTap: () {}),
+
+        const Spacer(),
+
+        /// 🔹 Nav Items
+        for (int i = 0; i < navTitles.length; i++)
+          Padding(
+            padding: const EdgeInsets.only(right: 15),
+            child: InkWell(
+              onTap: () => onNavMenuTap(i),
+              borderRadius: BorderRadius.circular(20),
+              child: Container(
+                padding: const EdgeInsets.symmetric(
+                  horizontal: 14,
+                  vertical: 8,
+                ),
+                child: Text(
+                  navTitles[i],
+                  style: const TextStyle(
+                    fontSize: 14,
+                    fontWeight: FontWeight.w500,
+                    color: Colors.white,
+                  ),
+                ),
+              ),
+            ),
+          ),
+      ],
+    ),
+  );
+}
 }

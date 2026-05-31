@@ -41,16 +41,36 @@ class ProjectCard extends StatelessWidget {
                 ),
 
                 //====Sub Tittle===
-                Padding(
-                  padding: const EdgeInsets.fromLTRB(12, 0, 12, 12),
-                  child: Text(
-                    project.subtitle,
-                    style: const TextStyle(
-                      fontSize: 12,
-                      color: CustomColor.whiteSecondary,
+                Expanded(
+                  child: SingleChildScrollView(
+                    padding: const EdgeInsets.fromLTRB(12, 0, 12, 12),
+                    child: Text(
+                      project.subtitle,
+                    
+                      style: const TextStyle(
+                        fontSize: 12,
+                        color: CustomColor.whiteSecondary,
+                      ),
                     ),
                   ),
                 ),
+                /*Expanded(
+                  child: SingleChildScrollView(
+                    padding: const EdgeInsets.fromLTRB(12, 0, 12, 12),
+                    child: Text(
+                      project.subtitle,
+                      //trimLines: 6,
+                     // trimMode: TrimMode.Line,
+                     // trimCollapsedText: ' Read more',
+                      //trimExpandedText: ' Read less',
+                      //colorClickableText: Colors.blueAccent,
+                      style: const TextStyle(
+                        fontSize: 12,
+                        color: CustomColor.whiteSecondary,
+                      ),
+                    ),
+                  ),
+                ),*/
                 const Spacer(),
 
                 //---------Footer---------

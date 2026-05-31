@@ -18,7 +18,7 @@ class HomePage extends StatelessWidget {
   final scaffoldKey = GlobalKey<ScaffoldState>();
   final scrollController = ScrollController();
 
-  final List<GlobalKey> navbarKeys = List.generate(4, (index) => GlobalKey());
+  final List<GlobalKey> navbarKeys = List.generate(6, (index) => GlobalKey());
 
   @override
   Widget build(BuildContext context) {
@@ -67,12 +67,12 @@ class HomePage extends StatelessWidget {
 
 
                   //========Exprience=========
-                ExprienceSection(),
+                ExprienceSection(key: navbarKeys[1]),
                 const SizedBox(height: 30),
 
                 //========Skill=========
                 Container(
-                  key: navbarKeys[1],
+                  key: navbarKeys[2],
                   width: screenWidth,
                   padding: const EdgeInsets.fromLTRB(25, 20, 25, 60),
                   color: CustomColor.bgLight1,
@@ -101,11 +101,11 @@ class HomePage extends StatelessWidget {
                 ),
 
                 //========Projects=========
-                ProjectSection(key: navbarKeys[2]),
+                ProjectSection(key: navbarKeys[3]),
                 const SizedBox(height: 30),
 
                 //========Contact us===============
-                ContactSection(key: navbarKeys[3]),
+                ContactSection(key: navbarKeys[4]),
                 const SizedBox(height: 30),
 
                 //===========Footer========
@@ -119,16 +119,16 @@ class HomePage extends StatelessWidget {
   }
 
   void scrollToSection(int navIndex) {
-    if (navIndex == 4) return;
+  if (navIndex >= navbarKeys.length) return;
 
-    final key = navbarKeys[navIndex];
+  final key = navbarKeys[navIndex];
 
-    if (key.currentContext != null) {
-      Scrollable.ensureVisible(
-        key.currentContext!,
-        duration: const Duration(milliseconds: 500),
-        curve: Curves.easeInOut,
-      );
-    }
+  if (key.currentContext != null) {
+    Scrollable.ensureVisible(
+      key.currentContext!,
+      duration: const Duration(milliseconds: 500),
+      curve: Curves.easeInOut,
+    );
   }
+}
 }

@@ -20,9 +20,9 @@ List<ExprienceUtils> ExprienceSectionUtils = [
   ExprienceUtils(
     logo: 'assets/exprience/veecap.png',
     title: 'Veecap Eduventures Pvt. Ltd.- Mar 2025- Mar 2026',
-    role: 'Developer Intern • IIT Guwahati',
+    role: 'Computer Research • IIT Guwahati',
     subtitle:
-        'Worked in a research-driven environment with structured workflows.\nStrong communication & teamwork skills.\nTrained 800+ students under IIT Bombay initiatives.',
+        'Gained hands-on experience with software tools and digital platforms.\nWorked in a research-driven environment at IIT Guwahati.\nImproved communication, teamwork, and reporting skills.\nTrained 800+ students under IIT Bombay initiatives.',
     checkletter: '',
   ),
   ExprienceUtils(
