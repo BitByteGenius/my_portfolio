@@ -10,7 +10,7 @@ class ExprienceSection extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       padding: EdgeInsets.fromLTRB(25, 20, 25, 60),
-      color: CustomColor.bgLight2,
+      color: CustomColor.bgLight1,
       child: Column(
         children: [
           //Title
@@ -41,15 +41,17 @@ class ExprienceSection extends StatelessWidget {
       double cardWidth;
 
       if (constraints.maxWidth > 1100) {
-        cardWidth = 280; // Desktop
+        cardWidth = 900; // Desktop
       } else if (constraints.maxWidth > 800) {
-        cardWidth = 260; // Tablet
+        cardWidth = double.infinity; // Tablet
       } else {
         cardWidth = double.infinity; // Mobile (full width)
       }
 
      return Wrap(
-      direction: Axis.vertical,
+      //direction: Axis.vertical,
+     alignment: WrapAlignment.center,
+     runAlignment: WrapAlignment.center,
         spacing: 25,
         runSpacing: 25,
         children: [

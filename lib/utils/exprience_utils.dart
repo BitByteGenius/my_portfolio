@@ -19,18 +19,17 @@ class ExprienceUtils {
 List<ExprienceUtils> ExprienceSectionUtils = [
   ExprienceUtils(
     logo: 'assets/exprience/veecap.png',
-    title: 'Veecap Eduventures Pvt. Ltd.',
+    title: 'Veecap Eduventures Pvt. Ltd.- Mar 2025- Mar 2026',
     role: 'Developer Intern • IIT Guwahati',
     subtitle:
         'Worked in a research-driven environment with structured workflows.\nStrong communication & teamwork skills.\nTrained 800+ students under IIT Bombay initiatives.',
     checkletter: '',
   ),
   ExprienceUtils(
-    logo: 'assets/projects/01.png',
-    title: 'College Management App',
-    role: 'Flutter Developer',
-    subtitle:
-        'Role-based app for Admin, Teacher & Students with full academic workflow management.',
+    logo: 'assets/exprience/greynext_logo.png',
+    title: 'GreyNext Technologies Private Limited. - May 2026- Present',
+    role: 'Software Developer Intern',
+    subtitle:'',
     checkletter: '',
   ),
 ];

@@ -79,7 +79,7 @@ class ProjectCard extends StatelessWidget {
                             width: 19,
                           ),
                         ),
-                      if (project.androidLink != null)
+                      if (project.iosLink != null)
                         Padding(
                           padding: const EdgeInsets.only(left: 6),
                           child: InkWell(
@@ -94,7 +94,7 @@ class ProjectCard extends StatelessWidget {
                             ),
                           ),
                         ),
-                      if (project.androidLink != null)
+                      if (project.webLink != null)
                         Padding(
                           padding: const EdgeInsets.only(left: 6),
                           child: InkWell(

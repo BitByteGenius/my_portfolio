@@ -39,10 +39,10 @@ class ProjectSection extends StatelessWidget {
               ],
             ),
           ),
-          const SizedBox(height: 50),
+          //const SizedBox(height: 50),
 
           //----Hobby Project title---
-          const Text(
+          /*const Text(
             "Hobby Projects",
             style: TextStyle(
               fontSize: 24,
@@ -62,7 +62,7 @@ class ProjectSection extends StatelessWidget {
                   ProjectCard(project: hobbyProjectUtils[i]),
               ],
             ),
-          ),
+          ),*/
         ],
       ),
     );

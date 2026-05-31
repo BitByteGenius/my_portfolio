@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-List<String> navTitles = ["Home", "Skills", "Project", "Contact", "Blogs"];
+List<String> navTitles = ["Home", "Skills", "Project", "Contact", "Exprience"];
 
 //=========For mobile======
 
@@ -9,5 +9,5 @@ List<IconData> navIcon =[
  Icons.handyman_outlined,
  Icons.apps,
  Icons.quick_contacts_mail,
- Icons.web,
+ Icons.webhook,
 ];
