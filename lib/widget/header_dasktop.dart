@@ -4,7 +4,9 @@ import 'package:my_portfollio/constant/nav_items.dart';
 import 'package:my_portfollio/widget/site_logo.dart';
 
 class HeaderDasktop extends StatelessWidget {
-  const HeaderDasktop({super.key});
+  const HeaderDasktop({super.key, required this.onNavMenuTap});
+
+  final Function(int) onNavMenuTap;
 
   @override
   Widget build(BuildContext context) {
@@ -20,15 +22,17 @@ class HeaderDasktop extends StatelessWidget {
       ),
       child: Row(
         children: [
-          SiteLogo(onTap: (){},),
+          SiteLogo(onTap: () {}),
 
-         const Spacer(),
+          const Spacer(),
 
           for (int i = 0; i < navTitles.length; i++)
             Padding(
               padding: const EdgeInsets.only(right: 20),
               child: TextButton(
-                onPressed: () {},
+                onPressed: () {
+                  onNavMenuTap(i);
+                },
                 child: Text(
                   navTitles[i],
                   style: TextStyle(

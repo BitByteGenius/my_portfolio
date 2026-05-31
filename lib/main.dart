@@ -14,7 +14,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       theme: ThemeData.dark(),
-      title: 'Rahul Kumar Singh',
+      //title: 'Rahul Kumar Singh',
       home: HomePage(),
     );
   }

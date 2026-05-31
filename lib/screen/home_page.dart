@@ -3,6 +3,8 @@ import 'package:my_portfollio/constant/colors.dart';
 import 'package:my_portfollio/constant/size.dart';
 import 'package:my_portfollio/widget/contact_section.dart';
 import 'package:my_portfollio/widget/drawer_mobile.dart';
+import 'package:my_portfollio/widget/exprience_section.dart';
+import 'package:my_portfollio/widget/footer_section.dart';
 import 'package:my_portfollio/widget/header_dasktop.dart';
 import 'package:my_portfollio/widget/header_mobil.dart';
 import 'package:my_portfollio/widget/main_desktop.dart';
@@ -14,6 +16,9 @@ import 'package:my_portfollio/widget/skill_moble.dart';
 class HomePage extends StatelessWidget {
   HomePage({super.key});
   final scaffoldKey = GlobalKey<ScaffoldState>();
+  final scrollController = ScrollController();
+
+  final List<GlobalKey> navbarKeys = List.generate(4, (index) => GlobalKey());
 
   @override
   Widget build(BuildContext context) {
@@ -28,71 +33,102 @@ class HomePage extends StatelessWidget {
           backgroundColor: CustomColor.scaffoldBg,
           endDrawer: constraints.maxWidth >= rDesktopwidth
               ? null
-              : const DrawerMobile(),
-          body: ListView(
-            scrollDirection: Axis.vertical,
-            //========Main=========
-            children: [
-              if (constraints.maxWidth >= rDesktopwidth)
-                const HeaderDasktop()
-              else
-                HeaderMobile(
-                  onLogoTap: () {},
-                  onMenuTap: () {
-                    scaffoldKey.currentState?.openEndDrawer();
+              : DrawerMobile(
+                  onNavItemTap: (int navIndex) {
+                    scaffoldKey.currentState?.closeDrawer();
+                    scrollToSection(navIndex);
                   },
                 ),
-                
+          body: SingleChildScrollView(
+            controller: scrollController,
+            scrollDirection: Axis.vertical,
+            child: Column(
+              //========Main=========
+              children: [
+                SizedBox(key: navbarKeys.first),
                 if (constraints.maxWidth >= rDesktopwidth)
-              const MainDesktop()
-              else
-               const MainDesktopMobile(),
+                  HeaderDasktop(
+                    onNavMenuTap: (int navIndex) {
+                     scrollToSection(navIndex);
+                    },
+                  )
+                else
+                  HeaderMobile(
+                    onLogoTap: () {},
+                    onMenuTap: () {
+                      scaffoldKey.currentState?.openEndDrawer();
+                    },
+                  ),
 
-              //========Skill=========
-              Container(
-                width: screenWidth,
-                padding: const EdgeInsets.fromLTRB(25, 20, 25, 60),
-                color: CustomColor.bgLight1,
-                child: Column(
-                  mainAxisSize: MainAxisSize.min,
-                  children: [
-                    //====tittle====
-                    const Text(
-                      "What can i do", style: TextStyle(
-                        fontWeight: FontWeight.bold,
-                        fontSize: 24,
-                        color: CustomColor.whitePrimary
+                if (constraints.maxWidth >= rDesktopwidth)
+                  const MainDesktop()
+                else
+                  const MainDesktopMobile(),
+
+
+                  //========Exprience=========
+                ExprienceSection(),
+                const SizedBox(height: 30),
+
+                //========Skill=========
+                Container(
+                  key: navbarKeys[1],
+                  width: screenWidth,
+                  padding: const EdgeInsets.fromLTRB(25, 20, 25, 60),
+                  color: CustomColor.bgLight1,
+                  child: Column(
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      //====tittle====
+                      const Text(
+                        "What can i do",
+                        style: TextStyle(
+                          fontWeight: FontWeight.bold,
+                          fontSize: 24,
+                          color: CustomColor.whitePrimary,
+                        ),
                       ),
-                    ),
 
-                    const SizedBox(height: 50),
-                    //=====Skills + plateform  =============
+                      const SizedBox(height: 50),
 
-                    if (constraints.maxWidth >= rmedDesktopwidth)
-                   const SkillDesktop()
-                    else
-                   const SkillMoble(),
-                  ]
-                    
-                )
-              ),
-              
-              //========Projects=========
-              ProjectSection(),
-              const SizedBox(height: 30),
+                      //=====Skills + plateform  =============
+                      if (constraints.maxWidth >= rmedDesktopwidth)
+                        const SkillDesktop()
+                      else
+                        const SkillMoble(),
+                    ],
+                  ),
+                ),
 
-              //========Contact us===============
-             const ContactSection(),
-          ],
-          
-      ),
-      
+                //========Projects=========
+                ProjectSection(key: navbarKeys[2]),
+                const SizedBox(height: 30),
+
+                //========Contact us===============
+                ContactSection(key: navbarKeys[3]),
+                const SizedBox(height: 30),
+
+                //===========Footer========
+                const FooterSection(),
+              ],
+            ),
+          ),
         );
       },
-      
     );
   }
 
- 
-}
+  void scrollToSection(int navIndex) {
+    if (navIndex == 4) return;
 
+    final key = navbarKeys[navIndex];
+
+    if (key.currentContext != null) {
+      Scrollable.ensureVisible(
+        key.currentContext!,
+        duration: const Duration(milliseconds: 500),
+        curve: Curves.easeInOut,
+      );
+    }
+  }
+}
