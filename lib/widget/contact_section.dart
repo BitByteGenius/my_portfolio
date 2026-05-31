@@ -4,7 +4,7 @@ import 'package:my_portfollio/constant/colors.dart';
 import 'package:my_portfollio/constant/size.dart';
 import 'package:my_portfollio/constant/sns_link.dart';
 import 'package:my_portfollio/controller/contact_section_controller.dart';
-import 'package:my_portfollio/widget/Custom_text_field.dart';
+import 'package:my_portfollio/widget/custom_text_field.dart';
 import 'dart:js' as js;
 
 class ContactSection extends StatelessWidget {
