@@ -67,6 +67,7 @@ class HomePage extends StatelessWidget {
 
 
                   //========Exprience=========
+                  const SizedBox(height: 30),
                 ExprienceSection(key: navbarKeys[1]),
                 const SizedBox(height: 30),
 
