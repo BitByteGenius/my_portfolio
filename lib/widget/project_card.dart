@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:my_portfollio/common%20widget/dialog.dart';
 import 'package:my_portfollio/constant/colors.dart';
 import 'package:my_portfollio/utils/project_utils.dart';
 import 'dart:js' as js;
@@ -41,36 +42,44 @@ class ProjectCard extends StatelessWidget {
                 ),
 
                 //====Sub Tittle===
-                Expanded(
-                  child: SingleChildScrollView(
-                    padding: const EdgeInsets.fromLTRB(12, 0, 12, 12),
-                    child: Text(
-                      project.subtitle,
-                    
-                      style: const TextStyle(
-                        fontSize: 12,
-                        color: CustomColor.whiteSecondary,
-                      ),
-                    ),
-                  ),
-                ),
-                /*Expanded(
-                  child: SingleChildScrollView(
-                    padding: const EdgeInsets.fromLTRB(12, 0, 12, 12),
-                    child: Text(
-                      project.subtitle,
-                      //trimLines: 6,
-                     // trimMode: TrimMode.Line,
-                     // trimCollapsedText: ' Read more',
-                      //trimExpandedText: ' Read less',
-                      //colorClickableText: Colors.blueAccent,
-                      style: const TextStyle(
-                        fontSize: 12,
-                        color: CustomColor.whiteSecondary,
-                      ),
-                    ),
-                  ),
-                ),*/
+               Padding(
+  padding: const EdgeInsets.fromLTRB(12, 0, 12, 8),
+  child: Column(
+    crossAxisAlignment: CrossAxisAlignment.start,
+    children: [
+      Text(
+        project.subtitle,
+        maxLines: 2,
+        overflow: TextOverflow.ellipsis,
+        style: const TextStyle(
+          fontSize: 12,
+          color: CustomColor.whiteSecondary,
+        ),
+      ),
+
+      const SizedBox(height: 4),
+
+      InkWell(
+        onTap: () {
+          AppDialog.showProjectDialog(
+            context: context,
+            title: project.title,
+            content: project.subtitle,
+          );
+        },
+        child: const Text(
+          "Read more",
+          style: TextStyle(
+            fontSize: 11,
+            color: Colors.blueAccent,
+            fontWeight: FontWeight.w500,
+          ),
+        ),
+      ),
+    ],
+  ),
+),
+              
                 const Spacer(),
 
                 //---------Footer---------

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:my_portfollio/common%20widget/dialog.dart';
 import 'package:my_portfollio/constant/colors.dart';
 import 'package:my_portfollio/utils/exprience_utils.dart';
 import 'dart:js' as js;
@@ -118,25 +119,42 @@ class ExprienceCard extends StatelessWidget {
           
               /// 🔹 Content
               Padding(
-                padding: const EdgeInsets.all(12),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    
-                    /// Subtitle
-                    Text(
-            exprience.subtitle,
-            maxLines: 4,
-            overflow: TextOverflow.ellipsis,
-            style: const TextStyle(
-             // fontWeight: FontWeight.bold,
-              color: CustomColor.whitePrimary,
-              fontSize: 14,
-            ),
+  padding: const EdgeInsets.all(12),
+  child: Column(
+    crossAxisAlignment: CrossAxisAlignment.start,
+    children: [
+      Text(
+        exprience.subtitle,
+        maxLines: 3,
+        overflow: TextOverflow.ellipsis,
+        style: const TextStyle(
+          color: CustomColor.whitePrimary,
+          fontSize: 14,
+        ),
+      ),
+
+      const SizedBox(height: 4),
+     if(exprience.subtitle.length>100)
+      InkWell(
+        onTap: () {
+          AppDialog.showProjectDialog(
+            context: context,
+            title: exprience.title,
+            content: exprience.subtitle,
+          );
+        },
+        child: const Text(
+          "Read more",
+          style: TextStyle(
+            fontSize: 11,
+            color: Colors.blueAccent,
+            fontWeight: FontWeight.w500,
           ),
-                  ],
-                ),
-              ),
+        ),
+      ),
+    ],
+  ),
+),
           
               const SizedBox(height: 10),
           
