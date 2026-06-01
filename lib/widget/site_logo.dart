@@ -10,7 +10,7 @@ class SiteLogo extends StatelessWidget {
     return GestureDetector(
       onTap: onTap,
       child: Text(
-        "bitbytegenius",
+        "bitByteGenius",
         style: TextStyle(
           fontSize: 22,
           fontWeight: FontWeight.bold,
