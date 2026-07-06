@@ -23,7 +23,7 @@ class ExprienceCard extends StatelessWidget {
             color: CustomColor.bgLight2,
             boxShadow: [
               BoxShadow(
-                color: Colors.black.withOpacity(0.3),
+                color: Colors.black.withValues(alpha: 0.3),
                 blurRadius: 10,
                 spreadRadius: 2,
               ),
@@ -70,7 +70,7 @@ class ExprienceCard extends StatelessWidget {
     color: Colors.white,
     boxShadow: [
       BoxShadow(
-        color: Colors.black.withOpacity(0.3),
+        color: Colors.black.withValues(alpha: 0.3),
         blurRadius: 6,
       ),
     ],

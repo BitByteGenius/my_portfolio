@@ -86,8 +86,8 @@ class MainDesktopMobile extends StatelessWidget {
               shaderCallback: (bounds) {
                 return LinearGradient(
                   colors: [
-                    CustomColor.scaffoldBg.withOpacity(0.6),
-                    CustomColor.scaffoldBg.withOpacity(0.6),
+                    CustomColor.scaffoldBg.withValues(alpha: 0.6),
+                    CustomColor.scaffoldBg.withValues(alpha: 0.6),
                   ],
                 ).createShader(bounds);
               },

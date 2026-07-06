@@ -19,6 +19,9 @@ const List<Map> skillItems = [
   {"img": "assets/skills/api.png", "title": "Rest Api"},
   {"img": "assets/skills/mongodb.png", "title": "Mongo DB"},
   {"img": "assets/skills/canva.png", "title": "Canva"},
+  {"img": "assets/skills/express-js.png", "title": "Express JS"},
    {"img": "assets/skills/msoffice.png", "title": "MS Office"},
+   {"img": "assets/skills/postgresql.png", "title": "Postgresql"},
+    {"img": "assets/skills/react.png", "title": "React Native"},
   
 ];

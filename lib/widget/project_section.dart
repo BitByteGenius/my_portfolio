@@ -4,7 +4,7 @@ import 'package:my_portfollio/utils/project_utils.dart';
 import 'package:my_portfollio/widget/project_card.dart';
 
 class ProjectSection extends StatelessWidget {
-   ProjectSection({super.key, });
+   const ProjectSection({super.key, });
 
   //final double screenWidth;
   

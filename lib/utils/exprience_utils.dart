@@ -27,8 +27,15 @@ List<ExprienceUtils> ExprienceSectionUtils = [
   ),
   ExprienceUtils(
     logo: 'assets/exprience/greynext_logo.png',
-    title: 'GreyNext Technologies Private Limited. - May 2026- Present',
+    title: 'GreyNext Technologies Private Limited. - March 2026- May 2026',
     role: 'Software Developer Intern',
+    subtitle:'Developed and maintained enterprise-grade applications, implemented responsive UI, integrated RESTful APIs, optimized performance, fixed production issues, and collaborated with cross-functional teams using Git.',
+    checkletter: '',
+  ),
+  ExprienceUtils(
+    logo: 'assets/exprience/trip8.png',
+    title: 'Trip8 - March 2026- May 2026',
+    role: 'Full Stack Developer',
     subtitle:'',
     checkletter: '',
   ),

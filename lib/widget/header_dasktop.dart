@@ -58,13 +58,13 @@ Widget build(BuildContext context) {
       gradient: LinearGradient(
         colors: [
           Colors.transparent,
-          CustomColor.bgLight1.withOpacity(0.9),
+          CustomColor.bgLight1.withValues(alpha: 0.9),
         ],
       ),
       borderRadius: BorderRadius.circular(50),
       boxShadow: [
         BoxShadow(
-          color: Colors.black.withOpacity(0.2),
+          color: Colors.black.withValues(alpha: 0.2),
           blurRadius: 8,
         ),
       ],
