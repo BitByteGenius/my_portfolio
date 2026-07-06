@@ -194,7 +194,7 @@ class MainDesktop extends StatelessWidget {
       ConstrainedBox(
         constraints: const BoxConstraints(maxWidth: 600),
         child: Text(
-          "Full Stack Flutter Developer crafting scalable, high-performance apps with a strong focus on clean architecture and seamless user experience.",
+          "Full Stack Developer delivering secure, scalable, and production-ready applications with clean architecture and exceptional user experiences.",
           style: TextStyle(
             fontSize: size.width * 0.018,
             height: 1.6,
