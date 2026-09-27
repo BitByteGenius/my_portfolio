@@ -211,7 +211,7 @@ class MainDesktopMobile extends StatelessWidget {
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceAround,
               children: const [
-                _MobileStat(value: "3+ Yrs", label: "Experience"),
+                _MobileStat(value: "1.5 Yrs", label: "Experience"),
                 _MobileStat(value: "15+", label: "Projects"),
                 _MobileStat(value: "800+", label: "Mentored"),
               ],

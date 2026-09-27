@@ -14,208 +14,217 @@ class ContactSection extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      width: double.infinity,
-      padding: const EdgeInsets.symmetric(vertical: 60, horizontal: 24),
-      color: CustomColor.scaffoldBg,
-      child: Column(
-        children: [
-          // SECTION HEADER
-          Row(
-            mainAxisAlignment: MainAxisAlignment.center,
+    return LayoutBuilder(
+      builder: (context, constraints) {
+        final bool isDesktop = constraints.maxWidth >= rDesktopwidth;
+
+        return Container(
+          width: double.infinity,
+          padding: EdgeInsets.symmetric(
+            vertical: isDesktop ? 48 : 36,
+            horizontal: 20,
+          ),
+          color: CustomColor.scaffoldBg,
+          child: Column(
             children: [
-              Container(width: 30, height: 2, color: CustomColor.primaryTeal),
-              const SizedBox(width: 12),
-              const Text(
-                "Get In Touch",
-                style: TextStyle(
-                  fontWeight: FontWeight.bold,
-                  fontSize: 28,
-                  color: CustomColor.whitePrimary,
-                  letterSpacing: 0.5,
-                ),
-              ),
-              const SizedBox(width: 12),
-              Container(width: 30, height: 2, color: CustomColor.primaryTeal),
-            ],
-          ),
-          const SizedBox(height: 10),
-          const Text(
-            "Have a project in mind or want to collaborate? Feel free to reach out!",
-            textAlign: TextAlign.center,
-            style: TextStyle(
-              color: CustomColor.hintDark,
-              fontSize: 14,
-            ),
-          ),
-          const SizedBox(height: 40),
-
-          // FORM CONTAINER
-          ConstrainedBox(
-            constraints: const BoxConstraints(maxWidth: 720),
-            child: Container(
-              padding: const EdgeInsets.all(28),
-              decoration: BoxDecoration(
-                color: CustomColor.bgLight1,
-                borderRadius: BorderRadius.circular(24),
-                border: Border.all(color: CustomColor.glassBorder, width: 1),
-                boxShadow: [
-                  BoxShadow(
-                    color: Colors.black.withValues(alpha: 0.25),
-                    blurRadius: 16,
-                    offset: const Offset(0, 6),
-                  ),
-                ],
-              ),
-              child: Column(
+              // SECTION HEADER
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  // Name & Email Layout
-                  LayoutBuilder(
-                    builder: (context, constraints) {
-                      if (constraints.maxWidth >= rMobileWidth) {
-                        return Row(
-                          children: [
-                            Expanded(
-                              child: CustomTextField(
-                                hintText: "Your Name",
-                                controller: controller.nameController,
-                                prefixIcon: Icons.person_outline_rounded,
-                              ),
-                            ),
-                            const SizedBox(width: 16),
-                            Expanded(
-                              child: CustomTextField(
-                                hintText: "Your Email",
-                                controller: controller.emailController,
-                                prefixIcon: Icons.email_outlined,
-                              ),
-                            ),
-                          ],
-                        );
-                      } else {
-                        return Column(
-                          children: [
-                            CustomTextField(
-                              hintText: "Your Name",
-                              controller: controller.nameController,
-                              prefixIcon: Icons.person_outline_rounded,
-                            ),
-                            const SizedBox(height: 16),
-                            CustomTextField(
-                              hintText: "Your Email",
-                              controller: controller.emailController,
-                              prefixIcon: Icons.email_outlined,
-                            ),
-                          ],
-                        );
-                      }
-                    },
-                  ),
-                  const SizedBox(height: 16),
-
-                  // Message Field
-                  CustomTextField(
-                    hintText: "Write your message here...",
-                    controller: controller.messageController,
-                    maxLines: 5,
-                    prefixIcon: Icons.chat_bubble_outline_rounded,
-                  ),
-                  const SizedBox(height: 24),
-
-                  // Submit Button
-                  SizedBox(
-                    width: double.infinity,
-                    height: 52,
-                    child: Obx(
-                      () => ElevatedButton(
-                        onPressed: controller.isLoading.value
-                            ? null
-                            : () => controller.submitForm(),
-                        style: ElevatedButton.styleFrom(
-                          backgroundColor: CustomColor.primaryTeal,
-                          foregroundColor: Colors.white,
-                          disabledBackgroundColor:
-                              CustomColor.primaryTeal.withValues(alpha: 0.5),
-                          shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(16),
-                          ),
-                          elevation: 4,
-                          shadowColor: CustomColor.primaryTeal.withValues(alpha: 0.4),
-                        ),
-                        child: controller.isLoading.value
-                            ? const SizedBox(
-                                width: 22,
-                                height: 22,
-                                child: CircularProgressIndicator(
-                                  strokeWidth: 2.5,
-                                  color: Colors.white,
-                                ),
-                              )
-                            : Row(
-                                mainAxisAlignment: MainAxisAlignment.center,
-                                children: const [
-                                  Icon(Icons.send_rounded, size: 18),
-                                  SizedBox(width: 10),
-                                  Text(
-                                    "Send Message",
-                                    style: TextStyle(
-                                      fontSize: 16,
-                                      fontWeight: FontWeight.bold,
-                                      letterSpacing: 0.5,
-                                    ),
-                                  ),
-                                ],
-                              ),
-                      ),
+                  Container(width: 28, height: 2, color: CustomColor.primaryTeal),
+                  const SizedBox(width: 10),
+                  const Text(
+                    "Get In Touch",
+                    style: TextStyle(
+                      fontWeight: FontWeight.bold,
+                      fontSize: 26,
+                      color: CustomColor.whitePrimary,
+                      letterSpacing: 0.5,
                     ),
                   ),
+                  const SizedBox(width: 10),
+                  Container(width: 28, height: 2, color: CustomColor.primaryTeal),
                 ],
               ),
-            ),
-          ),
-          const SizedBox(height: 40),
+              const SizedBox(height: 8),
+              const Text(
+                "Have a project in mind or want to collaborate? Feel free to reach out!",
+                textAlign: TextAlign.center,
+                style: TextStyle(
+                  color: CustomColor.hintDark,
+                  fontSize: 13,
+                ),
+              ),
+              const SizedBox(height: 28),
 
-          // SOCIAL MEDIA CONNECT BADGES
-          ConstrainedBox(
-            constraints: const BoxConstraints(maxWidth: 720),
-            child: const Divider(color: CustomColor.glassBorder, height: 1),
-          ),
-          const SizedBox(height: 24),
+              // FORM CONTAINER
+              ConstrainedBox(
+                constraints: const BoxConstraints(maxWidth: 720),
+                child: Container(
+                  padding: const EdgeInsets.all(22),
+                  decoration: BoxDecoration(
+                    color: CustomColor.bgLight1,
+                    borderRadius: BorderRadius.circular(20),
+                    border: Border.all(color: CustomColor.glassBorder, width: 1),
+                    boxShadow: [
+                      BoxShadow(
+                        color: Colors.black.withValues(alpha: 0.2),
+                        blurRadius: 12,
+                        offset: const Offset(0, 4),
+                      ),
+                    ],
+                  ),
+                  child: Column(
+                    children: [
+                      // Name & Email Layout
+                      LayoutBuilder(
+                        builder: (context, constraints) {
+                          if (constraints.maxWidth >= rMobileWidth) {
+                            return Row(
+                              children: [
+                                Expanded(
+                                  child: CustomTextField(
+                                    hintText: "Your Name",
+                                    controller: controller.nameController,
+                                    prefixIcon: Icons.person_outline_rounded,
+                                  ),
+                                ),
+                                const SizedBox(width: 14),
+                                Expanded(
+                                  child: CustomTextField(
+                                    hintText: "Your Email",
+                                    controller: controller.emailController,
+                                    prefixIcon: Icons.email_outlined,
+                                  ),
+                                ),
+                              ],
+                            );
+                          } else {
+                            return Column(
+                              children: [
+                                CustomTextField(
+                                  hintText: "Your Name",
+                                  controller: controller.nameController,
+                                  prefixIcon: Icons.person_outline_rounded,
+                                ),
+                                const SizedBox(height: 12),
+                                CustomTextField(
+                                  hintText: "Your Email",
+                                  controller: controller.emailController,
+                                  prefixIcon: Icons.email_outlined,
+                                ),
+                              ],
+                            );
+                          }
+                        },
+                      ),
+                      const SizedBox(height: 12),
 
-          Wrap(
-            spacing: 16,
-            runSpacing: 16,
-            alignment: WrapAlignment.center,
-            children: [
-              _SocialBadge(
-                imagePath: "assets/sns/github.png",
-                label: "GitHub",
-                onTap: () => SiteUtils.openUrl(SnsLinks.github),
+                      // Message Field
+                      CustomTextField(
+                        hintText: "Write your message here...",
+                        controller: controller.messageController,
+                        maxLines: 4,
+                        prefixIcon: Icons.chat_bubble_outline_rounded,
+                      ),
+                      const SizedBox(height: 18),
+
+                      // Submit Button
+                      SizedBox(
+                        width: double.infinity,
+                        height: 48,
+                        child: Obx(
+                          () => ElevatedButton(
+                            onPressed: controller.isLoading.value
+                                ? null
+                                : () => controller.submitForm(),
+                            style: ElevatedButton.styleFrom(
+                              backgroundColor: CustomColor.primaryTeal,
+                              foregroundColor: Colors.white,
+                              disabledBackgroundColor:
+                                  CustomColor.primaryTeal.withValues(alpha: 0.5),
+                              shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(14),
+                              ),
+                              elevation: 4,
+                              shadowColor: CustomColor.primaryTeal.withValues(alpha: 0.4),
+                            ),
+                            child: controller.isLoading.value
+                                ? const SizedBox(
+                                    width: 20,
+                                    height: 20,
+                                    child: CircularProgressIndicator(
+                                      strokeWidth: 2.5,
+                                      color: Colors.white,
+                                    ),
+                                  )
+                                : Row(
+                                    mainAxisAlignment: MainAxisAlignment.center,
+                                    children: const [
+                                      Icon(Icons.send_rounded, size: 16),
+                                      SizedBox(width: 8),
+                                      Text(
+                                        "Send Message",
+                                        style: TextStyle(
+                                          fontSize: 15,
+                                          fontWeight: FontWeight.bold,
+                                          letterSpacing: 0.5,
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
               ),
-              _SocialBadge(
-                imagePath: "assets/sns/linkedin.png",
-                label: "LinkedIn",
-                onTap: () => SiteUtils.openUrl(SnsLinks.linkedin),
+              const SizedBox(height: 28),
+
+              // SOCIAL MEDIA CONNECT BADGES
+              ConstrainedBox(
+                constraints: const BoxConstraints(maxWidth: 720),
+                child: const Divider(color: CustomColor.glassBorder, height: 1),
               ),
-              _SocialBadge(
-                imagePath: "assets/sns/whatsapp.png",
-                label: "WhatsApp",
-                onTap: () => SiteUtils.openUrl(SnsLinks.whatsapp),
-              ),
-              _SocialBadge(
-                imagePath: "assets/sns/telegram.png",
-                label: "Telegram",
-                onTap: () => SiteUtils.openUrl(SnsLinks.telegram),
-              ),
-              _SocialBadge(
-                imagePath: "assets/sns/instagram.png",
-                label: "Instagram",
-                onTap: () => SiteUtils.openUrl(SnsLinks.instagram),
+              const SizedBox(height: 20),
+
+              Wrap(
+                spacing: 12,
+                runSpacing: 12,
+                alignment: WrapAlignment.center,
+                children: [
+                  _SocialBadge(
+                    imagePath: "assets/sns/github.png",
+                    label: "GitHub",
+                    onTap: () => SiteUtils.openUrl(SnsLinks.github),
+                  ),
+                  _SocialBadge(
+                    imagePath: "assets/sns/linkedin.png",
+                    label: "LinkedIn",
+                    onTap: () => SiteUtils.openUrl(SnsLinks.linkedin),
+                  ),
+                  _SocialBadge(
+                    imagePath: "assets/sns/whatsapp.png",
+                    label: "WhatsApp",
+                    onTap: () => SiteUtils.openUrl(SnsLinks.whatsapp),
+                  ),
+                  _SocialBadge(
+                    imagePath: "assets/sns/telegram.png",
+                    label: "Telegram",
+                    onTap: () => SiteUtils.openUrl(SnsLinks.telegram),
+                  ),
+                  _SocialBadge(
+                    imagePath: "assets/sns/instagram.png",
+                    label: "Instagram",
+                    onTap: () => SiteUtils.openUrl(SnsLinks.instagram),
+                  ),
+                ],
               ),
             ],
           ),
-        ],
-      ),
+        );
+      },
     );
   }
 }
@@ -247,14 +256,14 @@ class _SocialBadgeState extends State<_SocialBadge> {
         duration: const Duration(milliseconds: 200),
         child: InkWell(
           onTap: widget.onTap,
-          borderRadius: BorderRadius.circular(16),
+          borderRadius: BorderRadius.circular(14),
           child: Container(
-            padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 10),
+            padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 8),
             decoration: BoxDecoration(
               color: isHovered
                   ? CustomColor.primaryTeal.withValues(alpha: 0.2)
                   : CustomColor.bgLight1,
-              borderRadius: BorderRadius.circular(16),
+              borderRadius: BorderRadius.circular(14),
               border: Border.all(
                 color: isHovered ? CustomColor.primaryTeal : CustomColor.glassBorder,
               ),
@@ -262,7 +271,7 @@ class _SocialBadgeState extends State<_SocialBadge> {
                   ? [
                       BoxShadow(
                         color: CustomColor.primaryTeal.withValues(alpha: 0.3),
-                        blurRadius: 10,
+                        blurRadius: 8,
                         spreadRadius: 1,
                       ),
                     ]
@@ -273,19 +282,19 @@ class _SocialBadgeState extends State<_SocialBadge> {
               children: [
                 Image.asset(
                   widget.imagePath,
-                  width: 22,
-                  height: 22,
+                  width: 20,
+                  height: 20,
                   errorBuilder: (context, error, stackTrace) =>
-                      const Icon(Icons.link, size: 20, color: Colors.white),
+                      const Icon(Icons.link, size: 18, color: Colors.white),
                 ),
-                const SizedBox(width: 8),
+                const SizedBox(width: 6),
                 Text(
                   widget.label,
                   style: TextStyle(
                     color: isHovered
                         ? CustomColor.whitePrimary
                         : CustomColor.whiteSecondary,
-                    fontSize: 13,
+                    fontSize: 12,
                     fontWeight: FontWeight.w500,
                   ),
                 ),

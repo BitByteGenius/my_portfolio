@@ -24,11 +24,11 @@ class _ProjectCardState extends State<ProjectCard> {
       child: AnimatedContainer(
         duration: const Duration(milliseconds: 250),
         curve: Curves.easeInOut,
-        width: 300,
-        height: 380,
+        width: 310,
+        height: 330,
         clipBehavior: Clip.antiAlias,
         decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(20),
+          borderRadius: BorderRadius.circular(16),
           color: CustomColor.bgLight1,
           border: Border.all(
             color: isHovered ? CustomColor.primaryTeal : CustomColor.glassBorder,
@@ -38,9 +38,9 @@ class _ProjectCardState extends State<ProjectCard> {
             BoxShadow(
               color: isHovered
                   ? CustomColor.primaryTeal.withValues(alpha: 0.25)
-                  : Colors.black.withValues(alpha: 0.25),
-              blurRadius: isHovered ? 18 : 12,
-              offset: const Offset(0, 6),
+                  : Colors.black.withValues(alpha: 0.2),
+              blurRadius: isHovered ? 16 : 10,
+              offset: const Offset(0, 4),
             ),
           ],
         ),
@@ -51,7 +51,7 @@ class _ProjectCardState extends State<ProjectCard> {
             Stack(
               children: [
                 SizedBox(
-                  height: 160,
+                  height: 140,
                   width: double.infinity,
                   child: Image.asset(
                     widget.project.image,
@@ -59,7 +59,7 @@ class _ProjectCardState extends State<ProjectCard> {
                     errorBuilder: (context, error, stackTrace) => Container(
                       color: CustomColor.bgLight2,
                       child: const Center(
-                        child: Icon(Icons.dashboard_rounded, size: 48, color: CustomColor.hintDark),
+                        child: Icon(Icons.dashboard_rounded, size: 40, color: CustomColor.hintDark),
                       ),
                     ),
                   ),
@@ -71,7 +71,7 @@ class _ProjectCardState extends State<ProjectCard> {
                       gradient: LinearGradient(
                         colors: [
                           Colors.transparent,
-                          CustomColor.bgLight1.withValues(alpha: 0.9),
+                          CustomColor.bgLight1.withValues(alpha: 0.95),
                         ],
                         begin: Alignment.topCenter,
                         end: Alignment.bottomCenter,
@@ -82,10 +82,10 @@ class _ProjectCardState extends State<ProjectCard> {
               ],
             ),
 
-            // CONTENT
+            // CONTENT BODY
             Expanded(
               child: Padding(
-                padding: const EdgeInsets.fromLTRB(16, 8, 16, 8),
+                padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 10),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
@@ -96,11 +96,11 @@ class _ProjectCardState extends State<ProjectCard> {
                       overflow: TextOverflow.ellipsis,
                       style: const TextStyle(
                         fontWeight: FontWeight.bold,
-                        fontSize: 16,
+                        fontSize: 15,
                         color: CustomColor.whitePrimary,
                       ),
                     ),
-                    const SizedBox(height: 6),
+                    const SizedBox(height: 4),
                     // Subtitle
                     Text(
                       widget.project.subtitle,
@@ -108,7 +108,7 @@ class _ProjectCardState extends State<ProjectCard> {
                       overflow: TextOverflow.ellipsis,
                       style: const TextStyle(
                         fontSize: 12,
-                        height: 1.4,
+                        height: 1.35,
                         color: CustomColor.whiteSecondary,
                       ),
                     ),
@@ -123,13 +123,24 @@ class _ProjectCardState extends State<ProjectCard> {
                           techStack: widget.project.techStack,
                         );
                       },
-                      child: const Text(
-                        "Read Details",
-                        style: TextStyle(
-                          fontSize: 11,
-                          color: CustomColor.primaryTeal,
-                          fontWeight: FontWeight.bold,
-                        ),
+                      child: Row(
+                        mainAxisSize: MainAxisSize.min,
+                        children: const [
+                          Text(
+                            "Read Details",
+                            style: TextStyle(
+                              fontSize: 11,
+                              color: CustomColor.primaryTeal,
+                              fontWeight: FontWeight.bold,
+                            ),
+                          ),
+                          SizedBox(width: 3),
+                          Icon(
+                            Icons.arrow_forward_rounded,
+                            size: 12,
+                            color: CustomColor.primaryTeal,
+                          ),
+                        ],
                       ),
                     ),
                     const Spacer(),
@@ -141,7 +152,7 @@ class _ProjectCardState extends State<ProjectCard> {
                           children: widget.project.techStack.map((tech) {
                             return Container(
                               margin: const EdgeInsets.only(right: 6),
-                              padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
+                              padding: const EdgeInsets.symmetric(horizontal: 7, vertical: 3),
                               decoration: BoxDecoration(
                                 color: CustomColor.bgLight2,
                                 borderRadius: BorderRadius.circular(6),
@@ -165,7 +176,7 @@ class _ProjectCardState extends State<ProjectCard> {
             // FOOTER BAR (Platform Links)
             Container(
               color: CustomColor.bgLight2,
-              padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 10),
+              padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 8),
               child: Row(
                 children: [
                   const Text(
@@ -225,7 +236,7 @@ class _LinkIcon extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.only(left: 8),
+      padding: const EdgeInsets.only(left: 6),
       child: Tooltip(
         message: tooltip,
         child: InkWell(
@@ -239,7 +250,7 @@ class _LinkIcon extends StatelessWidget {
             ),
             child: Icon(
               icon,
-              size: 16,
+              size: 15,
               color: CustomColor.primaryTeal,
             ),
           ),

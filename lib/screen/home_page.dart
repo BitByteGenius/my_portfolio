@@ -57,7 +57,6 @@ class _HomePageState extends State<HomePage> {
         final box = context.findRenderObject() as RenderBox?;
         if (box != null) {
           final position = box.localToGlobal(Offset.zero);
-          // 150px threshold for navbar offset
           if (position.dy <= 180) {
             if (activeSectionIndex != i) {
               setState(() => activeSectionIndex = i);
@@ -78,7 +77,7 @@ class _HomePageState extends State<HomePage> {
         key.currentContext!,
         duration: const Duration(milliseconds: 650),
         curve: Curves.easeInOutCubic,
-        alignment: 0.05, // offset top slightly
+        alignment: 0.05,
       );
     }
   }
@@ -129,7 +128,7 @@ class _HomePageState extends State<HomePage> {
                 child: Column(
                   children: [
                     // Sticky Header Compensation Padding
-                    const SizedBox(height: 80),
+                    const SizedBox(height: 70),
 
                     // SECTION 0: HOME / HERO
                     SizedBox(key: navbarKeys[0]),
@@ -144,20 +143,16 @@ class _HomePageState extends State<HomePage> {
                         onProjectsTap: () => scrollToSection(3),
                       ),
 
-                    const SizedBox(height: 40),
-
                     // SECTION 1: EXPERIENCE
                     ExperienceSection(key: navbarKeys[1]),
-
-                    const SizedBox(height: 40),
 
                     // SECTION 2: SKILLS
                     Container(
                       key: navbarKeys[2],
                       width: screenWidth,
-                      padding: const EdgeInsets.symmetric(
-                        horizontal: 25,
-                        vertical: 60,
+                      padding: EdgeInsets.symmetric(
+                        horizontal: 20,
+                        vertical: isDesktop ? 48 : 36,
                       ),
                       color: CustomColor.bgLight1.withValues(alpha: 0.4),
                       child: Column(
@@ -167,38 +162,38 @@ class _HomePageState extends State<HomePage> {
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
                               Container(
-                                width: 30,
+                                width: 28,
                                 height: 2,
                                 color: CustomColor.primaryTeal,
                               ),
-                              const SizedBox(width: 12),
+                              const SizedBox(width: 10),
                               const Text(
                                 "What I Bring To The Table",
                                 style: TextStyle(
                                   fontWeight: FontWeight.bold,
-                                  fontSize: 28,
+                                  fontSize: 26,
                                   color: CustomColor.whitePrimary,
                                   letterSpacing: 0.5,
                                 ),
                               ),
-                              const SizedBox(width: 12),
+                              const SizedBox(width: 10),
                               Container(
-                                width: 30,
+                                width: 28,
                                 height: 2,
                                 color: CustomColor.primaryTeal,
                               ),
                             ],
                           ),
-                          const SizedBox(height: 10),
+                          const SizedBox(height: 8),
                           const Text(
                             "My technical toolbox, platforms & preferred developer stack",
                             textAlign: TextAlign.center,
                             style: TextStyle(
                               color: CustomColor.hintDark,
-                              fontSize: 14,
+                              fontSize: 13,
                             ),
                           ),
-                          const SizedBox(height: 50),
+                          const SizedBox(height: 32),
                           if (constraints.maxWidth >= rmedDesktopwidth)
                             const SkillDesktop()
                           else
@@ -207,12 +202,8 @@ class _HomePageState extends State<HomePage> {
                       ),
                     ),
 
-                    const SizedBox(height: 40),
-
                     // SECTION 3: PROJECTS
                     ProjectSection(key: navbarKeys[3]),
-
-                    const SizedBox(height: 40),
 
                     // SECTION 4: CONTACT
                     ContactSection(key: navbarKeys[4]),
