@@ -1,5 +1,4 @@
 const List<Map<String, String>> platformItems = [
-  {"img": "assets/skills/flutter.png", "title": "Flutter Cross-Platform"},
   {"img": "assets/skills/android.png", "title": "Android App Dev"},
   {"img": "assets/skills/ios.png", "title": "iOS App Dev"},
   {"img": "assets/skills/web.png", "title": "Web Development"},

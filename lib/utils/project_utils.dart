@@ -51,9 +51,9 @@ List<ProjectUtils> workProjectUtils = [
   ),
   ProjectUtils(
     image: 'assets/projects/oji_one.jpeg',
-    title: 'Oji App - Smart Service Hub',
+    title: 'Oji One - Smart Service Hub',
     subtitle:
-        'A modern service utility platform connecting users with local service providers featuring real-time location mapping, booking schedules, and review systems.',
+        'Oji One is a location-based platform designed to bring everyday needs into one place. Users can discover rooms, flats, PGs, hostels, hotels, and homestays, access local services like electricians and plumbers, shop local and GI-tagged products, rent cars or bikes, and explore tours and experiences. The platform aims to make discovering trusted local options easier for students, professionals, travellers, families, and residents while helping local businesses gain visibility and reach new customers.',
     techStack: ['Flutter', 'REST APIs', 'Google Maps', 'Node.js'],
     androidLink: 'https://github.com/BitByteGenius',
     githubLink: 'https://github.com/BitByteGenius',

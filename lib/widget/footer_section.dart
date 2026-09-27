@@ -36,22 +36,22 @@ class FooterSection extends StatelessWidget {
                       ),
                     ),
                     const SizedBox(height: 16),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        IconButton(
-                          onPressed: () => SiteUtils.openUrl(SnsLinks.github),
-                          icon: const Icon(Icons.code, color: CustomColor.whiteSecondary, size: 20),
-                        ),
-                        IconButton(
-                          onPressed: () => SiteUtils.openUrl(SnsLinks.linkedin),
-                          icon: const Icon(Icons.work_outline, color: CustomColor.whiteSecondary, size: 20),
-                        ),
-                      ],
-                    ),
-                    const SizedBox(height: 16),
+                    // Row(
+                    //   mainAxisAlignment: MainAxisAlignment.center,
+                    //   children: [
+                    //     IconButton(
+                    //       onPressed: () => SiteUtils.openUrl(SnsLinks.github),
+                    //       icon: const Icon(Icons.code, color: CustomColor.whiteSecondary, size: 20),
+                    //     ),
+                    //     IconButton(
+                    //       onPressed: () => SiteUtils.openUrl(SnsLinks.linkedin),
+                    //       icon: const Icon(Icons.work_outline, color: CustomColor.whiteSecondary, size: 20),
+                    //     ),
+                    //   ],
+                    // ),
+                    // const SizedBox(height: 16),
                     const Text(
-                      "© 2026 Rahul Kumar Singh • Built with Flutter 3 & Dart",
+                      "© 2026 Rahul Kumar Singh • Built with Flutter",
                       textAlign: TextAlign.center,
                       style: TextStyle(
                         color: CustomColor.hintDark,
