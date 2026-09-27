@@ -22,7 +22,7 @@ List<ExprienceUtils> ExprienceSectionUtils = [
 
   ExprienceUtils(
     logo: 'assets/exprience/trip8.png',
-    title: 'Trip8. - June 2026- Present',
+    title: 'Trip8. - June 2026- Augest',
     role: 'Full Stack Developer',
     subtitle:'',
     checkletter: '',
