@@ -8,45 +8,105 @@ class SkillMoble extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ConstrainedBox(
-      constraints: BoxConstraints(
-        maxWidth: 500,
-      ),
+      constraints: const BoxConstraints(maxWidth: 600),
       child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          for (int i = 0; i < platformItems.length; i++)
-            Container(
-              margin: const EdgeInsets.only(bottom: 5),
-              width: double.maxFinite,
-              decoration: BoxDecoration(
-                color: CustomColor.bgLight2,
-                borderRadius: BorderRadius.circular(0.5),
-              ),
-              child: ListTile(
-                contentPadding: const EdgeInsets.symmetric(
-                  horizontal: 20,
-                  vertical: 10,
-                ),
-                leading: Image.asset(platformItems[i]["img"], width: 26),
-                title: Text(platformItems[i]["title"]),
-              ),
+          const Text(
+            "Core Specializations",
+            style: TextStyle(
+              color: CustomColor.primaryTeal,
+              fontSize: 16,
+              fontWeight: FontWeight.bold,
             ),
-      
-          const SizedBox(height: 50),
-          //=================Skills==========
+          ),
+          const SizedBox(height: 14),
+          Column(
+            children: [
+              for (int i = 0; i < platformItems.length; i++)
+                Container(
+                  margin: const EdgeInsets.only(bottom: 10),
+                  width: double.infinity,
+                  decoration: BoxDecoration(
+                    color: CustomColor.bgLight2,
+                    borderRadius: BorderRadius.circular(12),
+                    border: Border.all(color: CustomColor.glassBorder),
+                  ),
+                  child: ListTile(
+                    contentPadding: const EdgeInsets.symmetric(
+                      horizontal: 16,
+                      vertical: 4,
+                    ),
+                    leading: Container(
+                      padding: const EdgeInsets.all(6),
+                      decoration: BoxDecoration(
+                        color: CustomColor.scaffoldBg,
+                        borderRadius: BorderRadius.circular(8),
+                      ),
+                      child: Image.asset(
+                        platformItems[i]["img"]!,
+                        width: 24,
+                        height: 24,
+                        errorBuilder: (context, error, stackTrace) =>
+                            const Icon(Icons.code, color: Colors.white, size: 20),
+                      ),
+                    ),
+                    title: Text(
+                      platformItems[i]["title"]!,
+                      style: const TextStyle(
+                        color: Colors.white,
+                        fontWeight: FontWeight.w600,
+                        fontSize: 14,
+                      ),
+                    ),
+                  ),
+                ),
+            ],
+          ),
+          const SizedBox(height: 30),
+          const Text(
+            "Technologies & Tools",
+            style: TextStyle(
+              color: CustomColor.primaryTeal,
+              fontSize: 16,
+              fontWeight: FontWeight.bold,
+            ),
+          ),
+          const SizedBox(height: 14),
           Wrap(
-            spacing: 10,
-            runSpacing: 10,
-            alignment: WrapAlignment.center,
+            spacing: 8,
+            runSpacing: 8,
+            alignment: WrapAlignment.start,
             children: [
               for (int i = 0; i < skillItems.length; i++)
-                Chip(
-                  padding: const EdgeInsets.symmetric(
-                    vertical: 12,
-                    horizontal: 16,
+                Container(
+                  padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 8),
+                  decoration: BoxDecoration(
+                    color: CustomColor.bgLight2,
+                    borderRadius: BorderRadius.circular(20),
+                    border: Border.all(color: CustomColor.glassBorder),
                   ),
-                  backgroundColor: CustomColor.bgLight2,
-                  label: Text(skillItems[i]["title"]),
-                  avatar: Image.asset(skillItems[i]["img"]),
+                  child: Row(
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      Image.asset(
+                        skillItems[i]["img"]!,
+                        width: 18,
+                        height: 18,
+                        errorBuilder: (context, error, stackTrace) =>
+                            const Icon(Icons.build, size: 14, color: Colors.white),
+                      ),
+                      const SizedBox(width: 8),
+                      Text(
+                        skillItems[i]["title"]!,
+                        style: const TextStyle(
+                          color: CustomColor.whiteSecondary,
+                          fontSize: 12,
+                          fontWeight: FontWeight.w500,
+                        ),
+                      ),
+                    ],
+                  ),
                 ),
             ],
           ),
@@ -55,3 +115,6 @@ class SkillMoble extends StatelessWidget {
     );
   }
 }
+
+// Alias for backward compatibility
+typedef SkillMobile = SkillMoble;

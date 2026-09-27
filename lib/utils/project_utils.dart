@@ -2,72 +2,73 @@ class ProjectUtils {
   final String image;
   final String title;
   final String subtitle;
+  final List<String> techStack;
   final String? iosLink;
   final String? androidLink;
   final String? webLink;
+  final String? githubLink;
 
   ProjectUtils({
     required this.image,
     required this.title,
     required this.subtitle,
+    this.techStack = const [],
     this.androidLink,
     this.iosLink,
     this.webLink,
+    this.githubLink,
   });
 }
 
-//############ Hobby Projects ##############
-List<ProjectUtils> hobbyProjectUtils = [
-  ProjectUtils(
-    image: 'assets/projects/01.png',
-    title: 'College Management App',
-    subtitle: 'This is a Role based app for Teacher, Admin and Student here ou can do all the operation which is doing in college/ schools.',
-    androidLink: '',
-    iosLink: '',
-    webLink: '',
-  ),
-  ProjectUtils(
-    image: 'assets/projects/01.png',
-    title: 'College Management App',
-    subtitle: 'This is a Role based app for Teacher, Admin and Student here ou can do all the operation which is doing in college/ schools.',
-    androidLink: '',
-    iosLink: '',
-    webLink: '',
-  ),ProjectUtils(
-    image: 'assets/projects/01.png',
-    title: 'College Management App',
-    subtitle: 'This is a Role based app for Teacher, Admin and Student here ou can do all the operation which is doing in college/ schools.',
-    androidLink: '',
-    iosLink: '',
-    webLink: '',
-  ),
-];
-
-//############ Work Projects ##############
+// Work Projects
 List<ProjectUtils> workProjectUtils = [
   ProjectUtils(
-    image:  'assets/projects/01.png',
+    image: 'assets/projects/01.png',
     title: 'College Management App',
-    subtitle: 'This is a Role based app for Teacher, Admin and Student here ou can do all the operation which is doing in college/ schools.',
-    androidLink: '',
-    iosLink: '',
-    webLink: '',
+    subtitle:
+        'A comprehensive role-based portal for Students, Teachers, and Administrators. Enables grade management, attendance tracking, notice boards, and fee processing with smooth real-time sync.',
+    techStack: ['Flutter', 'Dart', 'REST API', 'GetX'],
+    androidLink: 'https://github.com/BitByteGenius',
+    githubLink: 'https://github.com/BitByteGenius',
   ),
   ProjectUtils(
     image: 'assets/projects/02.png',
-    title: 'Hastkala - Ecommerce Platform',
-    subtitle: 'Platform for handmade products. It features a clean UI with product listings, categories, and a smooth checkout experience. Designed with warm earthy tones, it reflects the essence of promoting artisans and authentic handcrafted goods through a modern digital shopping experience.',
-    androidLink: '',
-    iosLink: '',
-    webLink: '',
+    title: 'Hastkala - E-Commerce Platform',
+    subtitle:
+        'A artisan e-commerce application featuring warm aesthetic design, product categorizations, shopping cart management, payment gateway integration, and seamless order tracking.',
+    techStack: ['Flutter', 'Firebase', 'State Management', 'UI/UX'],
+    androidLink: 'https://github.com/BitByteGenius',
+    githubLink: 'https://github.com/BitByteGenius',
   ),
   ProjectUtils(
     image: 'assets/projects/03.png',
-    title: 'My Chat – Chatting Application',
-    subtitle: 'A real-time chat app built with Flutter and Firebase, enabling secure authentication and instant messaging. It features a simple, modern UI with smooth conversation flow, real-time updates, and reliable performance for seamless one-to-one communication.',
-    androidLink: '',
-    iosLink: '',
-    webLink: '',
+    title: 'My Chat – Realtime Messaging App',
+    subtitle:
+        'A high-performance messaging app built with Flutter & Firebase. Supports instant end-to-end messaging, user presence indicators, media sharing, and push notifications.',
+    techStack: ['Flutter', 'Firebase Auth', 'Cloud Firestore', 'FCM'],
+    androidLink: 'https://github.com/BitByteGenius',
+    githubLink: 'https://github.com/BitByteGenius',
   ),
-  
+  ProjectUtils(
+    image: 'assets/projects/oji_one.jpeg',
+    title: 'Oji App - Smart Service Hub',
+    subtitle:
+        'A modern service utility platform connecting users with local service providers featuring real-time location mapping, booking schedules, and review systems.',
+    techStack: ['Flutter', 'REST APIs', 'Google Maps', 'Node.js'],
+    androidLink: 'https://github.com/BitByteGenius',
+    githubLink: 'https://github.com/BitByteGenius',
+  ),
+];
+
+// Hobby / Featured Projects
+List<ProjectUtils> hobbyProjectUtils = [
+  ProjectUtils(
+    image: 'assets/projects/02.png',
+    title: 'AI Portfolio & Automation Suite',
+    subtitle:
+        'An interactive personal workspace showcasing AI integration, dynamic layout engines, and cross-platform Flutter web performance.',
+    techStack: ['Flutter Web', 'Dart', 'GetX'],
+    githubLink: 'https://github.com/BitByteGenius',
+    webLink: 'https://github.com/BitByteGenius',
+  ),
 ];

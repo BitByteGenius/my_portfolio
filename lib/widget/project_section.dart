@@ -4,65 +4,59 @@ import 'package:my_portfollio/utils/project_utils.dart';
 import 'package:my_portfollio/widget/project_card.dart';
 
 class ProjectSection extends StatelessWidget {
-   const ProjectSection({super.key, });
+  const ProjectSection({super.key});
 
-  //final double screenWidth;
-  
   @override
   Widget build(BuildContext context) {
-    final screenWidth = MediaQuery.of(context).size.width;
-
     return Container(
-      padding: const EdgeInsets.fromLTRB(25, 20, 25, 60),
-      width: screenWidth,
+      width: double.infinity,
+      padding: const EdgeInsets.symmetric(vertical: 60, horizontal: 24),
+      color: CustomColor.bgLight1.withValues(alpha: 0.5),
       child: Column(
         children: [
-          //----Work Project title---
+          // SECTION HEADER
+          Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Container(width: 30, height: 2, color: CustomColor.primaryTeal),
+              const SizedBox(width: 12),
+              const Text(
+                "Featured Projects",
+                style: TextStyle(
+                  fontSize: 28,
+                  fontWeight: FontWeight.bold,
+                  color: CustomColor.whitePrimary,
+                  letterSpacing: 0.5,
+                ),
+              ),
+              const SizedBox(width: 12),
+              Container(width: 30, height: 2, color: CustomColor.primaryTeal),
+            ],
+          ),
+          const SizedBox(height: 10),
           const Text(
-            "Work Projects",
+            "Production-ready web & mobile applications built with Flutter",
+            textAlign: TextAlign.center,
             style: TextStyle(
-              fontSize: 24,
-              fontWeight: FontWeight.bold,
-              color: CustomColor.whitePrimary,
+              color: CustomColor.hintDark,
+              fontSize: 14,
             ),
           ),
-          const SizedBox(height: 50),
-          //------Work Project Card-----
+          const SizedBox(height: 40),
+
+          // PROJECT CARDS GRID
           ConstrainedBox(
-            constraints: const BoxConstraints(maxWidth: 900),
+            constraints: const BoxConstraints(maxWidth: 1100),
             child: Wrap(
-              spacing: 25,
-              runSpacing: 25,
+              spacing: 24,
+              runSpacing: 24,
+              alignment: WrapAlignment.center,
               children: [
                 for (int i = 0; i < workProjectUtils.length; i++)
                   ProjectCard(project: workProjectUtils[i]),
               ],
             ),
           ),
-          //const SizedBox(height: 50),
-
-          //----Hobby Project title---
-          /*const Text(
-            "Hobby Projects",
-            style: TextStyle(
-              fontSize: 24,
-              fontWeight: FontWeight.bold,
-              color: CustomColor.whitePrimary,
-            ),
-          ),
-          const SizedBox(height: 50),
-          //------Hobby Project Card-----
-          ConstrainedBox(
-            constraints: const BoxConstraints(maxWidth: 900),
-            child: Wrap(
-              spacing: 25,
-              runSpacing: 25,
-              children: [
-                for (int i = 0; i < hobbyProjectUtils.length; i++)
-                  ProjectCard(project: hobbyProjectUtils[i]),
-              ],
-            ),
-          ),*/
         ],
       ),
     );

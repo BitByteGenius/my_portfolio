@@ -13,123 +13,239 @@ import 'package:my_portfollio/widget/project_section.dart';
 import 'package:my_portfollio/widget/skill_desktop.dart';
 import 'package:my_portfollio/widget/skill_moble.dart';
 
-class HomePage extends StatelessWidget {
-  HomePage({super.key});
+class HomePage extends StatefulWidget {
+  const HomePage({super.key});
+
+  @override
+  State<HomePage> createState() => _HomePageState();
+}
+
+class _HomePageState extends State<HomePage> {
   final scaffoldKey = GlobalKey<ScaffoldState>();
   final scrollController = ScrollController();
+  final List<GlobalKey> navbarKeys = List.generate(5, (index) => GlobalKey());
 
-  final List<GlobalKey> navbarKeys = List.generate(6, (index) => GlobalKey());
+  int activeSectionIndex = 0;
+  bool showBackToTop = false;
+
+  @override
+  void initState() {
+    super.initState();
+    scrollController.addListener(_onScroll);
+  }
+
+  @override
+  void dispose() {
+    scrollController.removeListener(_onScroll);
+    scrollController.dispose();
+    super.dispose();
+  }
+
+  void _onScroll() {
+    // Show or hide back to top button
+    if (scrollController.offset > 400 && !showBackToTop) {
+      setState(() => showBackToTop = true);
+    } else if (scrollController.offset <= 400 && showBackToTop) {
+      setState(() => showBackToTop = false);
+    }
+
+    // Determine current active section index
+    for (int i = navbarKeys.length - 1; i >= 0; i--) {
+      final key = navbarKeys[i];
+      final context = key.currentContext;
+      if (context != null) {
+        final box = context.findRenderObject() as RenderBox?;
+        if (box != null) {
+          final position = box.localToGlobal(Offset.zero);
+          // 150px threshold for navbar offset
+          if (position.dy <= 180) {
+            if (activeSectionIndex != i) {
+              setState(() => activeSectionIndex = i);
+            }
+            break;
+          }
+        }
+      }
+    }
+  }
+
+  void scrollToSection(int navIndex) {
+    if (navIndex >= navbarKeys.length) return;
+
+    final key = navbarKeys[navIndex];
+    if (key.currentContext != null) {
+      Scrollable.ensureVisible(
+        key.currentContext!,
+        duration: const Duration(milliseconds: 650),
+        curve: Curves.easeInOutCubic,
+        alignment: 0.05, // offset top slightly
+      );
+    }
+  }
+
+  void scrollToTop() {
+    scrollController.animateTo(
+      0,
+      duration: const Duration(milliseconds: 650),
+      curve: Curves.easeInOutCubic,
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
     final screenSize = MediaQuery.of(context).size;
     final screenWidth = screenSize.width;
-    //final screenHeight = screenSize.height;
 
     return LayoutBuilder(
       builder: (context, constraints) {
+        final isDesktop = constraints.maxWidth >= rDesktopwidth;
+
         return Scaffold(
           key: scaffoldKey,
           backgroundColor: CustomColor.scaffoldBg,
-          endDrawer: constraints.maxWidth >= rDesktopwidth
+          endDrawer: isDesktop
               ? null
               : DrawerMobile(
+                  activeIndex: activeSectionIndex,
                   onNavItemTap: (int navIndex) {
-                    scaffoldKey.currentState?.closeDrawer();
+                    scaffoldKey.currentState?.closeEndDrawer();
                     scrollToSection(navIndex);
                   },
                 ),
-          body: SingleChildScrollView(
-            controller: scrollController,
-            scrollDirection: Axis.vertical,
-            child: Column(
-              //========Main=========
-              children: [
-                SizedBox(key: navbarKeys.first),
-                if (constraints.maxWidth >= rDesktopwidth)
-                  HeaderDasktop(
-                    onNavMenuTap: (int navIndex) {
-                     scrollToSection(navIndex);
-                    },
-                  )
-                else
-                  HeaderMobile(
-                    onLogoTap: () {},
-                    onMenuTap: () {
-                      scaffoldKey.currentState?.openEndDrawer();
-                    },
-                  ),
+          floatingActionButton: showBackToTop
+              ? FloatingActionButton.small(
+                  onPressed: scrollToTop,
+                  backgroundColor: CustomColor.primaryTeal,
+                  foregroundColor: Colors.white,
+                  child: const Icon(Icons.arrow_upward_rounded),
+                )
+              : null,
+          body: Stack(
+            children: [
+              // MAIN SCROLLABLE CONTENT
+              SingleChildScrollView(
+                controller: scrollController,
+                physics: const BouncingScrollPhysics(),
+                child: Column(
+                  children: [
+                    // Sticky Header Compensation Padding
+                    const SizedBox(height: 80),
 
-                if (constraints.maxWidth >= rDesktopwidth)
-                  const MainDesktop()
-                else
-                  const MainDesktopMobile(),
-
-
-                  //========Exprience=========
-                  const SizedBox(height: 30),
-                ExprienceSection(key: navbarKeys[1]),
-                const SizedBox(height: 30),
-
-                //========Skill=========
-                Container(
-                  key: navbarKeys[2],
-                  width: screenWidth,
-                  padding: const EdgeInsets.fromLTRB(25, 20, 25, 60),
-                  color: CustomColor.bgLight1,
-                  child: Column(
-                    mainAxisSize: MainAxisSize.min,
-                    children: [
-                      //====tittle====
-                      const Text(
-                        "What can i do",
-                        style: TextStyle(
-                          fontWeight: FontWeight.bold,
-                          fontSize: 24,
-                          color: CustomColor.whitePrimary,
-                        ),
+                    // SECTION 0: HOME / HERO
+                    SizedBox(key: navbarKeys[0]),
+                    if (isDesktop)
+                      MainDesktop(
+                        onContactTap: () => scrollToSection(4),
+                        onProjectsTap: () => scrollToSection(3),
+                      )
+                    else
+                      MainDesktopMobile(
+                        onContactTap: () => scrollToSection(4),
+                        onProjectsTap: () => scrollToSection(3),
                       ),
 
-                      const SizedBox(height: 50),
+                    const SizedBox(height: 40),
 
-                      //=====Skills + plateform  =============
-                      if (constraints.maxWidth >= rmedDesktopwidth)
-                        const SkillDesktop()
-                      else
-                        const SkillMoble(),
-                    ],
-                  ),
+                    // SECTION 1: EXPERIENCE
+                    ExperienceSection(key: navbarKeys[1]),
+
+                    const SizedBox(height: 40),
+
+                    // SECTION 2: SKILLS
+                    Container(
+                      key: navbarKeys[2],
+                      width: screenWidth,
+                      padding: const EdgeInsets.symmetric(
+                        horizontal: 25,
+                        vertical: 60,
+                      ),
+                      color: CustomColor.bgLight1.withValues(alpha: 0.4),
+                      child: Column(
+                        mainAxisSize: MainAxisSize.min,
+                        children: [
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              Container(
+                                width: 30,
+                                height: 2,
+                                color: CustomColor.primaryTeal,
+                              ),
+                              const SizedBox(width: 12),
+                              const Text(
+                                "What I Bring To The Table",
+                                style: TextStyle(
+                                  fontWeight: FontWeight.bold,
+                                  fontSize: 28,
+                                  color: CustomColor.whitePrimary,
+                                  letterSpacing: 0.5,
+                                ),
+                              ),
+                              const SizedBox(width: 12),
+                              Container(
+                                width: 30,
+                                height: 2,
+                                color: CustomColor.primaryTeal,
+                              ),
+                            ],
+                          ),
+                          const SizedBox(height: 10),
+                          const Text(
+                            "My technical toolbox, platforms & preferred developer stack",
+                            textAlign: TextAlign.center,
+                            style: TextStyle(
+                              color: CustomColor.hintDark,
+                              fontSize: 14,
+                            ),
+                          ),
+                          const SizedBox(height: 50),
+                          if (constraints.maxWidth >= rmedDesktopwidth)
+                            const SkillDesktop()
+                          else
+                            const SkillMoble(),
+                        ],
+                      ),
+                    ),
+
+                    const SizedBox(height: 40),
+
+                    // SECTION 3: PROJECTS
+                    ProjectSection(key: navbarKeys[3]),
+
+                    const SizedBox(height: 40),
+
+                    // SECTION 4: CONTACT
+                    ContactSection(key: navbarKeys[4]),
+
+                    // FOOTER
+                    const FooterSection(),
+                  ],
                 ),
+              ),
 
-                //========Projects=========
-                ProjectSection(key: navbarKeys[3]),
-                const SizedBox(height: 30),
-
-                //========Contact us===============
-                ContactSection(key: navbarKeys[4]),
-                const SizedBox(height: 30),
-
-                //===========Footer========
-                const FooterSection(),
-              ],
-            ),
+              // FIXED FLOATING HEADER (GLASSMORPHISM NAVBAR)
+              Positioned(
+                top: 0,
+                left: 0,
+                right: 0,
+                child: isDesktop
+                    ? HeaderDesktop(
+                        activeIndex: activeSectionIndex,
+                        onNavMenuTap: (int navIndex) {
+                          scrollToSection(navIndex);
+                        },
+                      )
+                    : HeaderMobile(
+                        onLogoTap: () => scrollToSection(0),
+                        onMenuTap: () {
+                          scaffoldKey.currentState?.openEndDrawer();
+                        },
+                      ),
+              ),
+            ],
           ),
         );
       },
     );
   }
-
-  void scrollToSection(int navIndex) {
-  if (navIndex >= navbarKeys.length) return;
-
-  final key = navbarKeys[navIndex];
-
-  if (key.currentContext != null) {
-    Scrollable.ensureVisible(
-      key.currentContext!,
-      duration: const Duration(milliseconds: 500),
-      curve: Curves.easeInOut,
-    );
-  }
-}
 }

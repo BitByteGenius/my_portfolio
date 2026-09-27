@@ -1,272 +1,304 @@
-/*import 'package:flutter/material.dart';
-import 'package:my_portfollio/constant/colors.dart';
-import 'package:my_portfollio/constant/images.dart';
-
-class MainDesktop extends StatelessWidget {
-  const MainDesktop({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    final screenSize = MediaQuery.of(context).size;
-    final screenWidth = screenSize.width;
-     final screenHeight = screenSize.height;
-
-
-    return Container(
-      margin: const EdgeInsets.symmetric(horizontal: 20.0),
-      height: screenHeight / 1.2,
-      constraints: const BoxConstraints(minHeight: 350.0),
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-        children: [
-          Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              const Text(
-                "Hi, \nI'm Rahul Kumar Singh \n A Flutter Developer",
-                style: TextStyle(
-                  fontSize: 30,
-                  fontWeight: FontWeight.bold,
-                  height: 1.5,
-                  color: CustomColor.whitePrimary,
-                ),
-              ),
-              const SizedBox(height: 15),
-              SizedBox(
-                width: 250,
-                child: ElevatedButton(
-                  style: ElevatedButton.styleFrom(
-                    backgroundColor: Colors.teal,
-                    foregroundColor: Colors.white,
-                  ),
-                  onPressed: () {},
-                  child: const Text("Get in touch"),
-                ),
-              ),
-            ],
-          ),
-          Image.asset(CustomImages.profileImage, width: screenWidth / 2),
-           /*Expanded(
-            flex: 3,
-            child: Image.asset(
-              CustomImages.profileImage,
-              fit: BoxFit.contain,)),*/
-        ],
-      ),
-    );
-  }
-}*/
-
-
 import 'package:flutter/material.dart';
+import 'package:my_portfollio/constant/colors.dart';
 import 'package:my_portfollio/constant/images.dart';
 import 'package:my_portfollio/widget/blinking_dot.dart';
 
 class MainDesktop extends StatelessWidget {
-  const MainDesktop({super.key});
+  final VoidCallback? onContactTap;
+  final VoidCallback? onProjectsTap;
+
+  const MainDesktop({
+    super.key,
+    this.onContactTap,
+    this.onProjectsTap,
+  });
 
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
 
     return Container(
-      padding: EdgeInsets.symmetric(horizontal: size.width * 0.08),
-      height: size.height * 0.85,
+      constraints: const BoxConstraints(minHeight: 620),
+      padding: EdgeInsets.symmetric(
+        horizontal: size.width * 0.08,
+        vertical: 40,
+      ),
       child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
-          
-          /// LEFT SIDE (TEXT)
-          /*Expanded(
-            flex: 2,
+          // LEFT SIDE (TEXT & CTA)
+          Expanded(
+            flex: 6,
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Text(
-                  "Hi,\nI'm Rahul Kumar Singh\n",
-                  style: TextStyle(
-                    fontSize: size.width * 0.025,
-                    fontWeight: FontWeight.bold,
-                    height: 1.5,
-                    color: CustomColor.whitePrimary,
-                  ),
-                ),
-                Text(
-                  "Full Stack Flutter Developer creating scalable solutions \n with a strong focus on clean and robust architecture",
-                  style: TextStyle(
-                    fontSize: size.width * 0.020,
-                   // fontWeight: FontWeight.bold,
-                    height: 1,
-                    color: CustomColor.whitePrimary,
-                  ),
-                ),
-                const SizedBox(height: 20),
-                /*SizedBox(
-                  width: 220,
-                  child: ElevatedButton(
-                    style: ElevatedButton.styleFrom(
-                      backgroundColor: Colors.teal,
-                      foregroundColor: Colors.white,
-                      padding: const EdgeInsets.symmetric(vertical: 18),
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(30),
-                      ),
+                // Available Badge
+                Container(
+                  padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+                  decoration: BoxDecoration(
+                    color: CustomColor.primaryGreen.withValues(alpha: 0.12),
+                    borderRadius: BorderRadius.circular(30),
+                    border: Border.all(
+                      color: CustomColor.primaryGreen.withValues(alpha: 0.4),
+                      width: 1,
                     ),
-                    onPressed: () {},
-                    child: const Text("AVAILABLE FOR OPPORTUNITIES"),
                   ),
-                ),*/
-
-                SizedBox(
-  width: 260,
-  child: ElevatedButton(
-    style: ElevatedButton.styleFrom(
-      backgroundColor: Colors.teal,
-      foregroundColor: Colors.white,
-      padding: const EdgeInsets.symmetric(vertical: 18),
-      shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(30),
-      ),
-    ),
-    onPressed: () {},
-    child: FittedBox(
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: const [
-          BlinkingDot(),
-          SizedBox(width: 10),
-          Text("AVAILABLE FOR OPPORTUNITIES"),
-        ],
-      ),
-    ),
-  ),
-),
-              ],
-            ),
-          ),*/
-
-          Expanded(
-  flex: 2,
-  child: Column(
-    mainAxisAlignment: MainAxisAlignment.center,
-    crossAxisAlignment: CrossAxisAlignment.start,
-    children: [
-      /// 👋 Greeting
-      Text(
-        "Hi,",
-        style: TextStyle(
-          fontSize: size.width * 0.018,
-          color: Colors.grey.shade400,
-        ),
-      ),
-
-      /// 👨‍💻 Name (Highlighted)
-      RichText(
-        text: TextSpan(
-          children: [
-            TextSpan(
-              text: "I'm ",
-              style: TextStyle(
-                fontSize: size.width * 0.035,
-                fontWeight: FontWeight.bold,
-                color: Colors.white,
-              ),
-            ),
-            TextSpan(
-              text: "Rahul Kumar Singh",
-              style: TextStyle(
-                fontSize: size.width * 0.035,
-                fontWeight: FontWeight.bold,
-                foreground: Paint()
-                  ..shader = const LinearGradient(
-                    colors: [Colors.teal, Colors.greenAccent],
-                  ).createShader(Rect.fromLTWH(0, 0, 300, 70)),
-              ),
-            ),
-          ],
-        ),
-      ),
-
-      const SizedBox(height: 20),
-
-      /// 💼 Description
-      ConstrainedBox(
-        constraints: const BoxConstraints(maxWidth: 600),
-        child: Text(
-          "Full Stack Developer delivering secure, scalable, and production-ready applications with clean architecture and exceptional user experiences.",
-          style: TextStyle(
-            fontSize: size.width * 0.018,
-            height: 1.6,
-            color: Colors.grey.shade300,
-          ),
-        ),
-      ),
-
-      const SizedBox(height: 30),
-
-      /// 🚀 CTA Button
-      SizedBox(
-        width: 280,
-        child: FittedBox(
-          child: ElevatedButton(
-            style: ElevatedButton.styleFrom(
-              padding: const EdgeInsets.symmetric(vertical: 20),
-              backgroundColor: Colors.transparent,
-              shadowColor: Colors.transparent,
-              shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(40),
-              ),
-            ),
-            onPressed: () {},
-            child: Ink(
-              decoration: BoxDecoration(
-                gradient: const LinearGradient(
-                  colors: [Colors.teal, Colors.green],
+                  child: Row(
+                    mainAxisSize: MainAxisSize.min,
+                    children: const [
+                      BlinkingDot(color: CustomColor.primaryGreen, size: 8),
+                      SizedBox(width: 8),
+                      Text(
+                        "AVAILABLE FOR NEW OPPORTUNITIES",
+                        style: TextStyle(
+                          color: CustomColor.primaryGreen,
+                          fontSize: 11,
+                          fontWeight: FontWeight.bold,
+                          letterSpacing: 1.1,
+                        ),
+                      ),
+                    ],
+                  ),
                 ),
-                borderRadius: BorderRadius.circular(40),
-              ),
-              child: Container(
-                width: 300,
-                alignment: Alignment.center,
-                padding: const EdgeInsets.symmetric(vertical: 16),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: const [
-                    BlinkingDot(),
-                    SizedBox(width: 10),
-                    Text(
-                      "AVAILABLE FOR OPPORTUNITIES",
+                const SizedBox(height: 24),
+                // Greeting
+                const Text(
+                  "Hello, I'm",
+                  style: TextStyle(
+                    fontSize: 20,
+                    fontWeight: FontWeight.w500,
+                    color: CustomColor.whiteSecondary,
+                  ),
+                ),
+                const SizedBox(height: 6),
+                // Dynamic Gradient Name
+                ShaderMask(
+                  shaderCallback: (bounds) => const LinearGradient(
+                    colors: [
+                      CustomColor.whitePrimary,
+                      CustomColor.primaryTeal,
+                      CustomColor.primaryGreen,
+                    ],
+                    begin: Alignment.topLeft,
+                    end: Alignment.bottomRight,
+                  ).createShader(bounds),
+                  child: const Text(
+                    "Rahul Kumar Singh",
+                    style: TextStyle(
+                      fontSize: 46,
+                      fontWeight: FontWeight.w800,
+                      height: 1.1,
+                      color: Colors.white,
+                      letterSpacing: -0.5,
+                    ),
+                  ),
+                ),
+                const SizedBox(height: 12),
+                // Sub-heading Role
+                Row(
+                  children: [
+                    Container(
+                      height: 2,
+                      width: 28,
+                      color: CustomColor.primaryTeal,
+                    ),
+                    const SizedBox(width: 10),
+                    const Text(
+                      "Senior Flutter & Full Stack Engineer",
                       style: TextStyle(
-                        fontWeight: FontWeight.bold,
-                        letterSpacing: 1.2,
+                        fontSize: 20,
+                        fontWeight: FontWeight.w600,
+                        color: CustomColor.primaryTeal,
                       ),
                     ),
                   ],
                 ),
-              ),
+                const SizedBox(height: 20),
+                // Description
+                ConstrainedBox(
+                  constraints: const BoxConstraints(maxWidth: 580),
+                  child: const Text(
+                    "Passionate software developer specializing in building beautiful, cross-platform mobile & web applications. Expert in Dart, Flutter, Clean Architecture, REST APIs, and scalable backend integrations.",
+                    style: TextStyle(
+                      fontSize: 16,
+                      height: 1.6,
+                      color: CustomColor.whiteSecondary,
+                    ),
+                  ),
+                ),
+                const SizedBox(height: 32),
+                // CTA Action Buttons
+                Wrap(
+                  spacing: 16,
+                  runSpacing: 16,
+                  children: [
+                    ElevatedButton.icon(
+                      onPressed: onContactTap,
+                      icon: const Icon(Icons.mail_outline_rounded, size: 18),
+                      label: const Text("Get In Touch"),
+                      style: ElevatedButton.styleFrom(
+                        backgroundColor: CustomColor.primaryTeal,
+                        foregroundColor: Colors.white,
+                        padding: const EdgeInsets.symmetric(
+                          horizontal: 28,
+                          vertical: 18,
+                        ),
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(30),
+                        ),
+                        elevation: 8,
+                        shadowColor: CustomColor.primaryTeal.withValues(alpha: 0.4),
+                      ),
+                    ),
+                    OutlinedButton.icon(
+                      onPressed: onProjectsTap,
+                      icon: const Icon(Icons.folder_special_outlined, size: 18),
+                      label: const Text("View Projects"),
+                      style: OutlinedButton.styleFrom(
+                        foregroundColor: CustomColor.whitePrimary,
+                        padding: const EdgeInsets.symmetric(
+                          horizontal: 26,
+                          vertical: 18,
+                        ),
+                        side: BorderSide(
+                          color: CustomColor.primaryTeal.withValues(alpha: 0.6),
+                          width: 1.5,
+                        ),
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(30),
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+                const SizedBox(height: 36),
+                // Quick Stat Badges
+                Row(
+                  children: const [
+                    _StatBadge(label: "Experience", value: "3+ Yrs"),
+                    _StatDivider(),
+                    _StatBadge(label: "Projects Built", value: "15+"),
+                    _StatDivider(),
+                    _StatBadge(label: "Students Mentored", value: "800+"),
+                  ],
+                ),
+              ],
             ),
           ),
-        ),
-      ),
-    ],
-  ),
-),
-
-          /// RIGHT SIDE (IMAGE)
+          // RIGHT SIDE (PROFILE IMAGE WITH GLOW)
           Expanded(
-            flex: 3,
-            child: Align(
-              alignment: Alignment.centerRight,
-              child: Image.asset(
-                CustomImages.profileImage,
-                height: size.height * 0.7,
-                fit: BoxFit.contain,
+            flex: 5,
+            child: Center(
+              child: Stack(
+                alignment: Alignment.center,
+                children: [
+                  // Ambient Background Glow
+                  Container(
+                    width: 320,
+                    height: 320,
+                    decoration: BoxDecoration(
+                      shape: BoxShape.circle,
+                      gradient: RadialGradient(
+                        colors: [
+                          CustomColor.primaryTeal.withValues(alpha: 0.3),
+                          CustomColor.accentIndigo.withValues(alpha: 0.15),
+                          Colors.transparent,
+                        ],
+                        stops: const [0.2, 0.6, 1.0],
+                      ),
+                    ),
+                  ),
+                  // Glowing Border Ring
+                  Container(
+                    width: 310,
+                    height: 310,
+                    decoration: BoxDecoration(
+                      shape: BoxShape.circle,
+                      border: Border.all(
+                        color: CustomColor.primaryTeal.withValues(alpha: 0.4),
+                        width: 2,
+                      ),
+                      boxShadow: [
+                        BoxShadow(
+                          color: CustomColor.primaryTeal.withValues(alpha: 0.2),
+                          blurRadius: 20,
+                          spreadRadius: 2,
+                        ),
+                      ],
+                    ),
+                  ),
+                  // Main Profile Image Avatar
+                  ClipRRect(
+                    borderRadius: BorderRadius.circular(160),
+                    child: Image.asset(
+                      CustomImages.profileImage,
+                      width: 290,
+                      height: 290,
+                      fit: BoxFit.cover,
+                      errorBuilder: (context, error, stackTrace) => Container(
+                        width: 290,
+                        height: 290,
+                        color: CustomColor.bgLight2,
+                        child: const Icon(
+                          Icons.person_rounded,
+                          size: 100,
+                          color: CustomColor.whiteSecondary,
+                        ),
+                      ),
+                    ),
+                  ),
+                ],
               ),
             ),
           ),
         ],
       ),
+    );
+  }
+}
+
+class _StatBadge extends StatelessWidget {
+  final String label;
+  final String value;
+
+  const _StatBadge({required this.label, required this.value});
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Text(
+          value,
+          style: const TextStyle(
+            color: CustomColor.primaryTeal,
+            fontSize: 20,
+            fontWeight: FontWeight.bold,
+          ),
+        ),
+        Text(
+          label,
+          style: const TextStyle(
+            color: CustomColor.hintDark,
+            fontSize: 12,
+            fontWeight: FontWeight.w500,
+          ),
+        ),
+      ],
+    );
+  }
+}
+
+class _StatDivider extends StatelessWidget {
+  const _StatDivider();
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      height: 28,
+      width: 1,
+      margin: const EdgeInsets.symmetric(horizontal: 20),
+      color: CustomColor.glassBorder,
     );
   }
 }
