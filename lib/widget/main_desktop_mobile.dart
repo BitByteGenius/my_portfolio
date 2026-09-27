@@ -134,7 +134,7 @@ class MainDesktopMobile extends StatelessWidget {
 
           // ROLE
           const Text(
-            "Senior Flutter & Full Stack Engineer",
+            " Flutter & Full Stack Developer",
             style: TextStyle(
               fontSize: 16,
               fontWeight: FontWeight.w600,
@@ -212,7 +212,7 @@ class MainDesktopMobile extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.spaceAround,
               children: const [
                 _MobileStat(value: "1.5 Yrs", label: "Experience"),
-                _MobileStat(value: "15+", label: "Projects"),
+                _MobileStat(value: "11+", label: "Projects"),
                 _MobileStat(value: "800+", label: "Mentored"),
               ],
             ),

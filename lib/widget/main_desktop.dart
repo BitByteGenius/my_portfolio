@@ -175,9 +175,9 @@ class MainDesktop extends StatelessWidget {
                 // Quick Stat Badges
                 Row(
                   children: const [
-                    _StatBadge(label: "Experience", value: "3+ Yrs"),
+                    _StatBadge(label: "Experience", value: "1.5 Yrs"),
                     _StatDivider(),
-                    _StatBadge(label: "Projects Built", value: "15+"),
+                    _StatBadge(label: "Projects Built", value: "11+"),
                     _StatDivider(),
                     _StatBadge(label: "Students Mentored", value: "800+"),
                   ],
