@@ -22,7 +22,7 @@ typedef ExprienceUtils = ExperienceUtils;
 final List<ExperienceUtils> experienceList = [
   ExperienceUtils(
     logo: 'assets/exprience/trip8.png',
-    title: 'Trip8. • June 2026 - August 2026',
+    title: 'Trip8 • June 2026 - August 2026',
     role: 'Full Stack Developer',
     subtitle:
         'Architected and delivered end-to-end full stack web & mobile applications. Focused on seamless client-server interaction, API optimization, state management with GetX/Bloc, and UI responsiveness across devices.',
@@ -35,7 +35,7 @@ final List<ExperienceUtils> experienceList = [
   ),
   ExperienceUtils(
     logo: 'assets/exprience/greynext_logo.png',
-    title: 'GreyNext Technologies Pvt. Ltd. • March 2026 - May 2026',
+    title: 'GreyNext Technologies Pvt. Ltd • March 2026 - May 2026',
     role: 'Software Developer Intern',
     subtitle:
         'Developed and maintained enterprise-grade applications, implemented responsive UI, integrated RESTful APIs, optimized performance, fixed production issues, and collaborated with cross-functional teams using Git.',
@@ -48,7 +48,7 @@ final List<ExperienceUtils> experienceList = [
   ),
   ExperienceUtils(
     logo: 'assets/exprience/veecap.png',
-    title: 'Veecap Eduventures Pvt. Ltd. • Mar 2025 - Mar 2026',
+    title: 'Veecap Eduventures Pvt. Ltd • Mar 2025 - Mar 2026',
     role: 'Computer Research • IIT Guwahati',
     subtitle:
         'Gained hands-on experience with software tools and digital platforms in a research environment at IIT Guwahati. Trained 800+ students under IIT Bombay initiatives.',

@@ -28,7 +28,7 @@ List<ProjectUtils> workProjectUtils = [
     subtitle:
         'A comprehensive role-based portal for Students, Teachers, and Administrators. Enables grade management, attendance tracking, notice boards, and fee processing with smooth real-time sync.',
     techStack: ['Flutter', 'Dart', 'REST API', 'GetX'],
-    androidLink: 'https://github.com/BitByteGenius',
+    androidLink: 'https://github.com/BitByteGenius/School_Management_App',
     githubLink: 'https://github.com/BitByteGenius',
   ),
   ProjectUtils(
@@ -37,16 +37,16 @@ List<ProjectUtils> workProjectUtils = [
     subtitle:
         'A artisan e-commerce application featuring warm aesthetic design, product categorizations, shopping cart management, payment gateway integration, and seamless order tracking.',
     techStack: ['Flutter', 'Firebase', 'State Management', 'UI/UX'],
-    androidLink: 'https://github.com/BitByteGenius',
+    androidLink: 'https://github.com/BitByteGenius/Cartify',
     githubLink: 'https://github.com/BitByteGenius',
   ),
   ProjectUtils(
-    image: 'assets/projects/03.png',
-    title: 'My Chat – Realtime Messaging App',
+    image: 'assets/projects/Jeevan Care.png',
+    title: 'Jeevan Care - Healthcare Platform',
     subtitle:
-        'A high-performance messaging app built with Flutter & Firebase. Supports instant end-to-end messaging, user presence indicators, media sharing, and push notifications.',
-    techStack: ['Flutter', 'Firebase Auth', 'Cloud Firestore', 'FCM'],
-    androidLink: 'https://github.com/BitByteGenius',
+        'JeevanCare is a modern healthcare platform designed for medicine discovery, healthcare products, lab tests, and doctor consultations. I developed the application using Flutter and Dart, with GetX for state management and responsive UI architecture. JavaScript and Node.js were used for backend development and API integration. The app includes structured modules, reusable components, location and map-based functionality, search, banners, healthcare categories, and product workflows. The architecture is designed to be scalable, maintainable, and ready for seamless future backend and service integrations.',
+    techStack: ['Flutter', 'Node.js', 'Google Maps', 'GetX', 'REST APIs', 'Responsive UI', 'State Management', 'Reusable Components', 'JavaScript', 'Dart'],
+    androidLink: 'https://github.com/BitByteGenius/jeevancare-frontend',
     githubLink: 'https://github.com/BitByteGenius',
   ),
   ProjectUtils(
@@ -54,8 +54,8 @@ List<ProjectUtils> workProjectUtils = [
     title: 'Oji One - Smart Service Hub',
     subtitle:
         'Oji One is a location-based platform designed to bring everyday needs into one place. Users can discover rooms, flats, PGs, hostels, hotels, and homestays, access local services like electricians and plumbers, shop local and GI-tagged products, rent cars or bikes, and explore tours and experiences. The platform aims to make discovering trusted local options easier for students, professionals, travellers, families, and residents while helping local businesses gain visibility and reach new customers.',
-    techStack: ['Flutter', 'REST APIs', 'Google Maps', 'Node.js'],
-    androidLink: 'https://github.com/BitByteGenius',
+    techStack: ['Flutter', 'REST APIs', 'Google Maps', 'Node.js', 'JavaScript', 'Dart', 'GetX', 'State Management', 'Responsive UI'],
+    androidLink: 'https://github.com/BitByteGenius/sewasetuu-app',
     githubLink: 'https://github.com/BitByteGenius',
   ),
 ];
