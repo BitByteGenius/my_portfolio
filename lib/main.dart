@@ -18,7 +18,7 @@ class MyApp extends StatelessWidget {
 
     return GetMaterialApp(
       debugShowCheckedModeBanner: false,
-      title: 'Rahul Kumar Singh | Senior Flutter Engineer',
+      title: 'Rahul Kumar Singh |  Flutter Engineer',
       theme: baseTheme.copyWith(
         scaffoldBackgroundColor: CustomColor.scaffoldBg,
         colorScheme: const ColorScheme.dark(

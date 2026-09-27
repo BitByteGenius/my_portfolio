@@ -104,7 +104,7 @@ class MainDesktop extends StatelessWidget {
                     ),
                     const SizedBox(width: 10),
                     const Text(
-                      "Senior Flutter & Full Stack Engineer",
+                      " Flutter & Full Stack Developer",
                       style: TextStyle(
                         fontSize: 20,
                         fontWeight: FontWeight.w600,

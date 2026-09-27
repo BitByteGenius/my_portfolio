@@ -1,7 +1,7 @@
-import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:my_portfollio/constant/colors.dart';
 import 'package:my_portfollio/constant/size.dart';
+import 'package:my_portfollio/utils/fluid_scroll_physics.dart';
 import 'package:my_portfollio/utils/project_utils.dart';
 import 'package:my_portfollio/widget/project_card.dart';
 
@@ -52,8 +52,8 @@ class _ProjectSectionState extends State<ProjectSection> {
         0.0,
         _projectScrollController.position.maxScrollExtent,
       ),
-      duration: const Duration(milliseconds: 450),
-      curve: Curves.easeInOutCubic,
+      duration: const Duration(milliseconds: 550),
+      curve: Curves.fastOutSlowIn,
     );
   }
 
@@ -63,8 +63,8 @@ class _ProjectSectionState extends State<ProjectSection> {
         0.0,
         _projectScrollController.position.maxScrollExtent,
       ),
-      duration: const Duration(milliseconds: 450),
-      curve: Curves.easeInOutCubic,
+      duration: const Duration(milliseconds: 550),
+      curve: Curves.fastOutSlowIn,
     );
   }
 
@@ -125,11 +125,11 @@ class _ProjectSectionState extends State<ProjectSection> {
                   alignment: Alignment.center,
                   children: [
                     ScrollConfiguration(
-                      behavior: const _HorizontalScrollBehavior(),
+                      behavior: const FluidScrollBehavior(),
                       child: SingleChildScrollView(
                         controller: _projectScrollController,
                         scrollDirection: Axis.horizontal,
-                        physics: const BouncingScrollPhysics(),
+                        physics: const FluidScrollPhysics(),
                         padding: const EdgeInsets.symmetric(
                           horizontal: 20,
                           vertical: 10,
@@ -196,19 +196,6 @@ class _ProjectSectionState extends State<ProjectSection> {
       },
     );
   }
-}
-
-// Custom Scroll Behavior enabling Mouse Dragging on Web & Desktop
-class _HorizontalScrollBehavior extends MaterialScrollBehavior {
-  const _HorizontalScrollBehavior();
-
-  @override
-  Set<PointerDeviceKind> get dragDevices => {
-        PointerDeviceKind.touch,
-        PointerDeviceKind.mouse,
-        PointerDeviceKind.trackpad,
-        PointerDeviceKind.stylus,
-      };
 }
 
 class _ScrollArrowButton extends StatelessWidget {

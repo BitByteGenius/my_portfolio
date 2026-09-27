@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:my_portfollio/constant/colors.dart';
 import 'package:my_portfollio/constant/size.dart';
+import 'package:my_portfollio/utils/fluid_scroll_physics.dart';
 import 'package:my_portfollio/widget/contact_section.dart';
 import 'package:my_portfollio/widget/drawer_mobile.dart';
 import 'package:my_portfollio/widget/exprience_section.dart';
@@ -75,8 +76,8 @@ class _HomePageState extends State<HomePage> {
     if (key.currentContext != null) {
       Scrollable.ensureVisible(
         key.currentContext!,
-        duration: const Duration(milliseconds: 650),
-        curve: Curves.easeInOutCubic,
+        duration: const Duration(milliseconds: 750),
+        curve: Curves.fastOutSlowIn,
         alignment: 0.05,
       );
     }
@@ -85,8 +86,8 @@ class _HomePageState extends State<HomePage> {
   void scrollToTop() {
     scrollController.animateTo(
       0,
-      duration: const Duration(milliseconds: 650),
-      curve: Curves.easeInOutCubic,
+      duration: const Duration(milliseconds: 750),
+      curve: Curves.fastOutSlowIn,
     );
   }
 
@@ -121,96 +122,99 @@ class _HomePageState extends State<HomePage> {
               : null,
           body: Stack(
             children: [
-              // MAIN SCROLLABLE CONTENT
-              SingleChildScrollView(
-                controller: scrollController,
-                physics: const BouncingScrollPhysics(),
-                child: Column(
-                  children: [
-                    // Sticky Header Compensation Padding
-                    const SizedBox(height: 70),
+              // MAIN SCROLLABLE CONTENT WITH FLUID WATER-LIKE PHYSICS
+              ScrollConfiguration(
+                behavior: const FluidScrollBehavior(),
+                child: SingleChildScrollView(
+                  controller: scrollController,
+                  physics: const FluidScrollPhysics(),
+                  child: Column(
+                    children: [
+                      // Sticky Header Compensation Padding
+                      const SizedBox(height: 70),
 
-                    // SECTION 0: HOME / HERO
-                    SizedBox(key: navbarKeys[0]),
-                    if (isDesktop)
-                      MainDesktop(
-                        onContactTap: () => scrollToSection(4),
-                        onProjectsTap: () => scrollToSection(3),
-                      )
-                    else
-                      MainDesktopMobile(
-                        onContactTap: () => scrollToSection(4),
-                        onProjectsTap: () => scrollToSection(3),
-                      ),
+                      // SECTION 0: HOME / HERO
+                      SizedBox(key: navbarKeys[0]),
+                      if (isDesktop)
+                        MainDesktop(
+                          onContactTap: () => scrollToSection(4),
+                          onProjectsTap: () => scrollToSection(3),
+                        )
+                      else
+                        MainDesktopMobile(
+                          onContactTap: () => scrollToSection(4),
+                          onProjectsTap: () => scrollToSection(3),
+                        ),
 
-                    // SECTION 1: EXPERIENCE
-                    ExperienceSection(key: navbarKeys[1]),
+                      // SECTION 1: EXPERIENCE
+                      ExperienceSection(key: navbarKeys[1]),
 
-                    // SECTION 2: SKILLS
-                    Container(
-                      key: navbarKeys[2],
-                      width: screenWidth,
-                      padding: EdgeInsets.symmetric(
-                        horizontal: 20,
-                        vertical: isDesktop ? 48 : 36,
-                      ),
-                      color: CustomColor.bgLight1.withValues(alpha: 0.4),
-                      child: Column(
-                        mainAxisSize: MainAxisSize.min,
-                        children: [
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              Container(
-                                width: 28,
-                                height: 2,
-                                color: CustomColor.primaryTeal,
-                              ),
-                              const SizedBox(width: 10),
-                              const Text(
-                                "What I Bring To The Table",
-                                style: TextStyle(
-                                  fontWeight: FontWeight.bold,
-                                  fontSize: 26,
-                                  color: CustomColor.whitePrimary,
-                                  letterSpacing: 0.5,
+                      // SECTION 2: SKILLS
+                      Container(
+                        key: navbarKeys[2],
+                        width: screenWidth,
+                        padding: EdgeInsets.symmetric(
+                          horizontal: 20,
+                          vertical: isDesktop ? 48 : 36,
+                        ),
+                        color: CustomColor.bgLight1.withValues(alpha: 0.4),
+                        child: Column(
+                          mainAxisSize: MainAxisSize.min,
+                          children: [
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                Container(
+                                  width: 28,
+                                  height: 2,
+                                  color: CustomColor.primaryTeal,
                                 ),
-                              ),
-                              const SizedBox(width: 10),
-                              Container(
-                                width: 28,
-                                height: 2,
-                                color: CustomColor.primaryTeal,
-                              ),
-                            ],
-                          ),
-                          const SizedBox(height: 8),
-                          const Text(
-                            "My technical toolbox, platforms & preferred developer stack",
-                            textAlign: TextAlign.center,
-                            style: TextStyle(
-                              color: CustomColor.hintDark,
-                              fontSize: 13,
+                                const SizedBox(width: 10),
+                                const Text(
+                                  "What I Bring To The Table",
+                                  style: TextStyle(
+                                    fontWeight: FontWeight.bold,
+                                    fontSize: 26,
+                                    color: CustomColor.whitePrimary,
+                                    letterSpacing: 0.5,
+                                  ),
+                                ),
+                                const SizedBox(width: 10),
+                                Container(
+                                  width: 28,
+                                  height: 2,
+                                  color: CustomColor.primaryTeal,
+                                ),
+                              ],
                             ),
-                          ),
-                          const SizedBox(height: 32),
-                          if (constraints.maxWidth >= rmedDesktopwidth)
-                            const SkillDesktop()
-                          else
-                            const SkillMoble(),
-                        ],
+                            const SizedBox(height: 8),
+                            const Text(
+                              "My technical toolbox, platforms & preferred developer stack",
+                              textAlign: TextAlign.center,
+                              style: TextStyle(
+                                color: CustomColor.hintDark,
+                                fontSize: 13,
+                              ),
+                            ),
+                            const SizedBox(height: 32),
+                            if (constraints.maxWidth >= rmedDesktopwidth)
+                              const SkillDesktop()
+                            else
+                              const SkillMoble(),
+                          ],
+                        ),
                       ),
-                    ),
 
-                    // SECTION 3: PROJECTS
-                    ProjectSection(key: navbarKeys[3]),
+                      // SECTION 3: PROJECTS
+                      ProjectSection(key: navbarKeys[3]),
 
-                    // SECTION 4: CONTACT
-                    ContactSection(key: navbarKeys[4]),
+                      // SECTION 4: CONTACT
+                      ContactSection(key: navbarKeys[4]),
 
-                    // FOOTER
-                    const FooterSection(),
-                  ],
+                      // FOOTER
+                      const FooterSection(),
+                    ],
+                  ),
                 ),
               ),
 

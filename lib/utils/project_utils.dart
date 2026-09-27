@@ -27,7 +27,7 @@ List<ProjectUtils> workProjectUtils = [
     title: 'College Management App',
     subtitle:
         'A comprehensive role-based portal for Students, Teachers, and Administrators. Enables grade management, attendance tracking, notice boards, and fee processing with smooth real-time sync.',
-    techStack: ['Flutter', 'Dart', 'REST API', 'GetX'],
+    techStack: ['Flutter', 'Dart', 'REST API', 'GetX', 'Socket.IO', 'State Management', 'Responsive UI', 'Firebase'],
     androidLink: 'https://github.com/BitByteGenius/School_Management_App',
     githubLink: 'https://github.com/BitByteGenius',
   ),
